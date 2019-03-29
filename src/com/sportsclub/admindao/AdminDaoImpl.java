@@ -20,10 +20,10 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public boolean addSport(Sports s) {
-		String addSports = "INSERT INTO SPORTSDATA VALUES (?,?,?,?,?,?)";
+		String addSportsQuery = "INSERT INTO SPORTSDATA VALUES (?,?,?,?,?,?)";
 		try {
 			con = dbutil.getConnection();
-			pstmt = con.prepareStatement(addSports);
+			pstmt = con.prepareStatement(addSportsQuery);
 			pstmt.setString(1, s.getSId());
 			pstmt.setString(2, s.getSName());
 			pstmt.setString(3, s.getSClub());
@@ -45,13 +45,13 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public List<Sports> getAllSports() {
-		String view = "SELECT * FROM SPORTSDATA";
+		String viewQuery = "SELECT * FROM SPORTSDATA";
 		Sports sports = null;
 		List<Sports> sportsList = new ArrayList<>();
 		try {
 			con = dbutil.getConnection();
 			stmt = con.createStatement();
-			rs = stmt.executeQuery(view);
+			rs = stmt.executeQuery(viewQuery);
 			while (rs.next()) {
 				String sId = rs.getString("sid");
 				String sName = rs.getString("sname");
@@ -71,12 +71,12 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public List<Sports> searchSports(String sID) {
-		String searchView = "SELECT * FROM SPORTSDATA WHERE SID=?";
+		String searchViewQuery = "SELECT * FROM SPORTSDATA WHERE SID=?";
 		Sports sports = null;
 		List<Sports> searchList = new ArrayList<>();
 		try {
 			con = dbutil.getConnection();
-			pstmt = con.prepareStatement(searchView);
+			pstmt = con.prepareStatement(searchViewQuery);
 			pstmt.setString(1, sID);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {

@@ -17,7 +17,7 @@ import com.sportsclub.domain.Sports;
 /**
  * Servlet implementation class ViewSports
  */
-@WebServlet("/viewsports")
+//@WebServlet("/viewsports")
 public class ViewSports extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

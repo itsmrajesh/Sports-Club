@@ -17,7 +17,7 @@ public class InitServices {
 
 	private static InitServices obj;
 
-	public static InitServices getInstance() {
+	public static synchronized InitServices getInstance() {
 		if (obj == null) {
 			return new InitServices();
 		}

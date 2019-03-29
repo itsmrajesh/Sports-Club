@@ -37,8 +37,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="com.sportsclub.web.UserLogin" project="SportsClub" 
-    file="/SportsClub/src/com/sportsclub/web/UserLogin.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="com.sportsclub.webuser.UserLogin" project="SportsClub" 
+    file="/SportsClub/src/com/sportsclub/webuser/UserLogin.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="781" y="482"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -46,8 +46,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="com.sportsclub.web.SignUp" project="SportsClub" 
-    file="/SportsClub/src/com/sportsclub/web/SignUp.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="com.sportsclub.webuser.SignUp" project="SportsClub" 
+    file="/SportsClub/src/com/sportsclub/webuser/SignUp.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1219" y="473"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -75,8 +75,12 @@
   </class>  
   <association id="9">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="10" name="sportsClubService"/>      
-      <multiplicity id="11" minimum="0" maximum="1"/>    
+      <attribute id="10" name="sportsClubService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="11" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
@@ -87,30 +91,42 @@
   </realization>  
   <association id="13">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="14" name="adminDao"/>      
-      <multiplicity id="15" minimum="0" maximum="1"/>    
+      <attribute id="14" name="adminDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="15" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="16">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="17" name="sportsClubService"/>      
-      <multiplicity id="18" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="19">    
+  <realization id="16">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="2"/>  
   </realization>  
-  <association id="20">    
+  <association id="17">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="21" name="adminDao"/>      
-      <multiplicity id="22" minimum="0" maximum="1"/>    
+      <attribute id="18" name="adminDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="19" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="21" name="sportsClubService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="22" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

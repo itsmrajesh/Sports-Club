@@ -16,7 +16,10 @@ public class SportsClubServiceImpl implements SportsClubService {
 		return false;
 	}
 
-	public boolean validateuser(String email, String password) {
-		return sportsclubdao.validateuser(email, password);
+	public boolean validateUser(String email, String password) {
+		if (email != " " && password != " ") {
+			return sportsclubdao.validateUser(email, password);
+		}
+		return false;
 	}
 }

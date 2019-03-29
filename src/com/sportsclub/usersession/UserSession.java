@@ -7,19 +7,34 @@ import com.sportsclub.domain.Profile;
 
 public class UserSession {
 
+	
 	private UserSession() {
 
 	}
 
 	private static UserSession obj;
 
-	public static UserSession getInstance() {
+	public static synchronized UserSession getInstance() {
 		if (obj == null) {
 			return new UserSession();
 		}
 		return obj;
 	}
-	List<Profile> userList = new ArrayList<>();
+
+	private List<Profile> userList = new ArrayList<>();	
+	
+	public String getUserID() {
+		String userID = null;
+		for(Profile pro:userList) {
+			userID=pro.getUserId();
+		}
+		return userID;
+	}
+	
+	public void logedUser(Profile p) {
+		userList.add(p);
+	}
+	
 	
 	
 }

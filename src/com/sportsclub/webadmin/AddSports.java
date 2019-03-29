@@ -15,7 +15,7 @@ import com.sportsclub.idservice.SportsIDGenerator;
 /**
  * Servlet implementation class AddSports
  */
-@WebServlet("/addsports")
+//@WebServlet("/addsports")
 public class AddSports extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -33,7 +33,7 @@ public class AddSports extends HttpServlet {
 		String sType = request.getParameter("stype");
 		Sports sports= Sports.builder().sId(sId).sName(sName).sClub(sClub).sPrice(sPrice).players(players).sType(sType).build();
 		adminDao.addSport(sports);
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
