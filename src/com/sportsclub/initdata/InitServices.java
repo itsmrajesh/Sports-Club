@@ -8,11 +8,10 @@ import com.sportsclub.admindao.AdminDaoImpl;
 import com.sportsclub.domain.Sports;
 
 public class InitServices {
-	
-	private static AdminDao adi = new AdminDaoImpl();
+
+	private static AdminDao admindao = new AdminDaoImpl();
 
 	private InitServices() {
-
 	}
 
 	private static InitServices obj;
@@ -30,7 +29,7 @@ public class InitServices {
 
 	public static List<Sports> loadAllSports() {
 		List<Sports> list = new ArrayList<>();
-		list = adi.getAllSports();
+		list = admindao.getAllSports();
 		return list;
 	}
 }

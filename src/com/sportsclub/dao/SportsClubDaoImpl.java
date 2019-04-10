@@ -60,7 +60,7 @@ public class SportsClubDaoImpl implements SportsClubDao {
 			pstmt.setString(1, p.getUserId());
 			pstmt.setString(2, p.getName());
 			pstmt.setString(3, p.getEmail());
-			pstmt.setInt(4, p.getDob());
+			pstmt.setString(4, p.getDob());
 			pstmt.setLong(5, p.getMobile());
 			pstmt.setString(6, p.getAddress());
 			pstmt.setString(7, p.getPassword());
@@ -91,11 +91,10 @@ public class SportsClubDaoImpl implements SportsClubDao {
 				String userId = rs.getString("uid");
 				String name = rs.getString("name");
 				String email_1 = rs.getString("email");
-				String password_1 = rs.getString("password");
 				long mobile = rs.getLong("mobile");
 				String address = rs.getString("address");
-				Profile profileLogin = Profile.builder().userId(userId).name(name).email(email_1).password(password_1)
-						.address(address).build();
+				Profile profileLogin = Profile.builder().userId(userId).name(name).email(email_1).address(address)
+						.mobile(mobile).build();
 				userSession.logedUser(profileLogin);
 				return true;
 			}
@@ -108,13 +107,14 @@ public class SportsClubDaoImpl implements SportsClubDao {
 	}
 
 	@Override
-	public boolean changePassword(String uId, String password) {
-		String changePasswordQuery = "UPDATE TABLE SIGNUPDATA SET PASSWORD = ? WHERE UID = ?";
+	public boolean changePassword(String uId, String newpassword, String oldpassword) {
+		String changePasswordQuery = "UPDATE SIGNUPDATA SET PASSWORD = ? WHERE UID = ? AND PASSWORD = ?";
 		try {
 			con = dbutil.getConnection();
 			pstmt = con.prepareStatement(changePasswordQuery);
-			pstmt.setString(1, password);
+			pstmt.setString(1, newpassword);
 			pstmt.setString(2, uId);
+			pstmt.setString(3, oldpassword);
 			int i = pstmt.executeUpdate();
 			if (i > 0) {
 				return true;
@@ -127,7 +127,7 @@ public class SportsClubDaoImpl implements SportsClubDao {
 
 	@Override
 	public boolean updateEmail(String uId, String newEmail) {
-		String updateEmailQuery = "UPDATE TABLE SIGNUPDATA SET EMAIL = ? WHERE UID = ?";
+		String updateEmailQuery = "UPDATE SIGNUPDATA SET EMAIL = ? WHERE UID = ?";
 		try {
 			con = dbutil.getConnection();
 			pstmt = con.prepareStatement(updateEmailQuery);
@@ -144,12 +144,12 @@ public class SportsClubDaoImpl implements SportsClubDao {
 	}
 
 	@Override
-	public boolean updatePhone(String uId, String newPhone) {
-		String updatePhoneQuery = "UPDATE TABLE SIGNUPDATA SET MOBILE = ? WHERE UID = ?";
+	public boolean updatePhone(String uId, long newPhone) {
+		String updatePhoneQuery = "UPDATE SIGNUPDATA SET MOBILE = ? WHERE UID = ?";
 		try {
 			con = dbutil.getConnection();
 			pstmt = con.prepareStatement(updatePhoneQuery);
-			pstmt.setString(1, newPhone);
+			pstmt.setLong(1, newPhone);
 			pstmt.setString(2, uId);
 			int i = pstmt.executeUpdate();
 			if (i > 0) {
@@ -159,6 +159,23 @@ public class SportsClubDaoImpl implements SportsClubDao {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public String getUserID(String email) {
+		String getUserIDQuery = "SELECT UID FROM SIGNUPDATA WHERE EMAIL=?";
+		try {
+			con = dbutil.getConnection();
+			pstmt = con.prepareStatement(getUserIDQuery);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				return rs.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "";
 	}
 
 }

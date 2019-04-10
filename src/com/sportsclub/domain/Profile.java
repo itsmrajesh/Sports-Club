@@ -13,9 +13,10 @@ public class Profile {
 	private String name;
 	private String email;
 	private String password;
-	private int dob;
+	private String dob;
 	private long mobile;
 	private String address;
 	private String userId;
-	
+	private String newpassword;
+
 }

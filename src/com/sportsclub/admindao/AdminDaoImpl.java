@@ -24,29 +24,29 @@ public class AdminDaoImpl implements AdminDao {
 		try {
 			con = dbutil.getConnection();
 			pstmt = con.prepareStatement(addSportsQuery);
-			pstmt.setString(1, s.getSId());
-			pstmt.setString(2, s.getSName());
-			pstmt.setString(3, s.getSClub());
-			pstmt.setDouble(4, s.getSPrice());
+			pstmt.setString(1, s.getSid());
+			pstmt.setString(2, s.getSname());
+			pstmt.setString(3, s.getSclub());
+			pstmt.setInt(4, s.getSprice());
 			pstmt.setInt(5, s.getPlayers());
-			pstmt.setString(6, s.getSType());
+			pstmt.setString(6, s.getStype());
 			int i = pstmt.executeUpdate();
 			if (i > 0) {
-				System.out.println("new Sport inserted.... for " + s.getSName());
+				System.out.println("new Sport inserted.... for " + s.getSname());
 				return true;
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("failed to add.. for " + s.getSName());
+		System.out.println("failed to add.. for " + s.getSname());
 		return false;
 	}
 
 	@Override
 	public List<Sports> getAllSports() {
 		String viewQuery = "SELECT * FROM SPORTSDATA";
-		Sports sports = null;
+		
 		List<Sports> sportsList = new ArrayList<>();
 		try {
 			con = dbutil.getConnection();
@@ -56,11 +56,11 @@ public class AdminDaoImpl implements AdminDao {
 				String sId = rs.getString("sid");
 				String sName = rs.getString("sname");
 				String sClub = rs.getString("sclub");
-				double sPrice = rs.getDouble("sprice");
+				int sPrice = rs.getInt("sprice");
 				int players = rs.getInt("players");
 				String sType = rs.getString("stype");
-				sports = Sports.builder().sId(sId).sName(sName).sClub(sClub).sPrice(sPrice).players(players)
-						.sType(sType).build();
+				Sports sports = Sports.builder().sid(sId).sname(sName).sclub(sClub).sprice(sPrice).players(players)
+						.stype(sType).build();
 				sportsList.add(sports);
 			}
 		} catch (SQLException e) {
@@ -83,11 +83,11 @@ public class AdminDaoImpl implements AdminDao {
 				String sId = rs.getString("sid");
 				String sName = rs.getString("sname");
 				String sClub = rs.getString("sclub");
-				double sPrice = rs.getDouble("sprice");
+				int sPrice = rs.getInt("sprice");
 				int players = rs.getInt("players");
 				String sType = rs.getString("stype");
-				sports = Sports.builder().sId(sId).sName(sName).sClub(sClub).sPrice(sPrice).players(players)
-						.sType(sType).build();
+				sports = Sports.builder().sid(sId).sname(sName).sclub(sClub).sprice(sPrice).players(players)
+						.stype(sType).build();
 				searchList.add(sports);
 			}
 		} catch (SQLException e) {

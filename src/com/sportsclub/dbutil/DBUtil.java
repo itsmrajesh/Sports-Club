@@ -18,7 +18,7 @@ public enum DBUtil {
 
 	public Connection getConnection() {
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sportsclub", "rajesh", "mysql123");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sportsclub?autoReconnect=true&useSSL=false", "rajesh", "mysql123");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

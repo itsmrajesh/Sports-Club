@@ -18,9 +18,9 @@ public class MemberIDGenerator {
 		if (c == 0) {
 			return id;
 		} else {
-			localCount = c++;
+			localCount += c;
+			return prefix + year + userType + localCount;
 		}
-		id = prefix + year + userType + localCount;
-		return id;
+
 	}
 }

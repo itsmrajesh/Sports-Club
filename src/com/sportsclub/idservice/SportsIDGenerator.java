@@ -16,9 +16,8 @@ public class SportsIDGenerator {
 		if (c == 0) {
 			return id;
 		} else {
-			localCount = c++;
+			localCount += c;
+			return prefix + localCount;
 		}
-		id = prefix + localCount;
-		return id;
 	}
 }

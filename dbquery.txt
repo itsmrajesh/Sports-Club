@@ -2,6 +2,6 @@ create database sportsclub;
 
 use sportsclub;
 
-create table sportsdata (sid varchar(50) primary key,sname varchar(200) not null,sclub varchar(200) not null,sprice double(5,2) not null,players int(10) not null,stype varchar(200) not null);
+create table sportsdata (sid varchar(50) primary key,sname varchar(200) not null,sclub varchar(200) not null,sprice int(10) not null,players int(10) not null,stype varchar(200) not null);
 
-create table signupdata (uid varchar(50) primary key,name varchar(200) not null, email varchar(100) not null,dob int(10) not null,mobile bigint not null,address varchar(200) not null,password varchar(100) not null);
+create table signupdata (uid varchar(50) primary key,name varchar(200) not null, email varchar(100) not null,dob date not null,mobile bigint not null,address varchar(200) not null,password varchar(100) not null);

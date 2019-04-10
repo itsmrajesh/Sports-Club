@@ -15,7 +15,7 @@ import com.sportsclub.admindao.AdminDaoImpl;
 import com.sportsclub.domain.Sports;
 import com.sportsclub.idservice.SportsIDGenerator;
 
-/**        
+/**
  * Servlet implementation class AdminServices
  */
 @WebServlet(urlPatterns = { "/addsports", "/viewsports", "/searchsports", "/addresults" })
@@ -27,26 +27,25 @@ public class AdminServices extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String url = request.getRequestURI();
-		System.out.println("url is "+url);
+		System.out.println("url is " + url);
 		if (url.endsWith("addsports")) {
 			String sId = sid.getSportID(); // Auto generated ID
 			String sName = request.getParameter("sname");
 			String sClub = request.getParameter("sclub");
-			double sPrice = Double.parseDouble(request.getParameter("sprice"));
+			int sPrice = Integer.parseInt(request.getParameter("sprice"));
 			int players = Integer.parseInt(request.getParameter("players"));
 			String sType = request.getParameter("stype");
-			Sports sports = Sports.builder().sId(sId).sName(sName).sClub(sClub).sPrice(sPrice).players(players)
-					.sType(sType).build();
+			Sports sports = Sports.builder().sid(sId).sname(sName).sclub(sClub).sprice(sPrice).players(players)
+					.stype(sType).build();
 			String status;
-			if(adminDao.addSport(sports)) {
-				status ="Success";
-				response.getWriter().append("status : "+status);
-			}
-			else {
-				status="Failure";
-				response.getWriter().append("status : "+status);
+			if (adminDao.addSport(sports)) {
+				status = "Success";
+				response.getWriter().append("status : " + status);
+			} else {
+				status = "Failure";
+				response.getWriter().append("status : " + status);
 			}
 
 		} else if (url.endsWith("viewsports")) {
@@ -67,7 +66,6 @@ public class AdminServices extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta name="viewport" content="width-device-width, initial-scale-1">    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+         * {
+        box-sizing: border-box;
+      }
+      
+      
+      .column {
+        float: left;
+        width: 25%;
+        padding: 10px;
+      }
+      
+      
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      
+      
+      @media screen and (max-width: 900px) {
+        .column  {
+          width: 50%;
+        }
+      }
+      
+      
+      @media screen and (max-width: 600px) {
+        .column  {
+          width: 100%;
+        }
+      }
+        .btt input[type="submit"] {
+            border: none;
+            outline: none;
+            background: blue;
+            height: 30px;
+            width: 100px;
+            color: #131212;
+            font-size: 18px;
+        }
+
+        body{
+    box-sizing: border-box;
+    margin: 0;
+    background-color: #9F56FF;
+    
+}
+
+header{
+    background: black;
+    color:white;
+    height: 50px;
+    padding: 20px 30px 30px 300px;
+    
+}
+form{
+    padding:0px;
+    margin:0;
+}
+
+ 
+ 
+ul{
+    position: absolute;
+    top: 75%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    margin: 0;
+    padding:0 ;
+    display: flex;
+    
+}
+ul li{
+    list-style: none;
+    padding: 20px 20px 150px 20px;
+}
+ul li a{
+    position: relative;
+    display: block;
+    padding: 10px 30px;
+    text-align: center;
+    font-size: 16px;
+    color: black;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: 0.5s;
+    font-weight: bold;
+}
+ul li a:hover{
+    color: #ECD0D0;
+
+}
+ul li a:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 2px;
+    background: black;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition:transform .9s;
+}
+ul li a:hover:before{
+    transform: scaleX(1);
+    transform-origin: left;
+
+
+}
+ul li a:after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right:0;
+    width: 100%;
+    height: 2px;
+    background: black;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition:transform .9s;
+}
+ul li a:hover:after{
+    transform: scaleX(1);
+    transform-origin: right;
+
+
+}
+    </style>
+</head>
+    <title>
+        My Account
+    </title>
+   
+
+
+
+<body background="main.jpg">
+        <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <li class="active"><a class="navbar-brand" href="#">Sports Club System</a></li>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="index.html">Home</a></li>
+                        <li class="active"><a href="admin.html">Back</a></li>
+                    </ul>
+    
+                   
+                        
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="index.html"><span class="glyphicon glyphicon-sign-up"></span> Logout</a></li>
+                    </ul>
+                </div>
+            </nav><br>
+
+        
+     
+
+    <form>
+        <ul>
+            <li>
+                <a href="password.html">Change<br> Password</a>
+            </li>
+            <br><br>
+            <li>
+
+                <a href="email.html">Update <br>E-mail Address </a>
+            </li>
+            <br><br>
+            <li>
+                <a href="mobnumb.html">Update<br> Contact Number</a>
+            </li>
+        </ul>
+
+    </form>
+
+</body>
+
+</html>

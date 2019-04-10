@@ -10,10 +10,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class Sports {
-	private String sId;
-	private String sName;
-	private String sClub;
-	private double sPrice;
+	private String sid;
+	private String sname;
+	private String sclub;
+	private int sprice;
 	private int players;
-	private String sType; // indoor or outdoor
+	private String stype; // indoor or outdoor
 }
