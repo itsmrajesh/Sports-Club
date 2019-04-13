@@ -29,7 +29,7 @@ public class InitServices {
 
 	public static List<Sports> loadAllSports() {
 		List<Sports> list = new ArrayList<>();
-		list = admindao.getAllSports();
+		//list = admindao.getAllSports();
 		return list;
 	}
 }

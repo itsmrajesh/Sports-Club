@@ -9,20 +9,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sportsclub.admindao.AdminDao;
 import com.sportsclub.admindao.AdminDaoImpl;
 import com.sportsclub.domain.Sports;
+import com.sportsclub.domain.SportsClubs;
 import com.sportsclub.idservice.SportsIDGenerator;
+import com.sportsclub.shared_dao.SharedDaoImpl;
 
-/**
- * Servlet implementation class AdminServices
- */
-@WebServlet(urlPatterns = { "/addsports", "/viewsports", "/searchsports", "/addresults" })
+@WebServlet(urlPatterns = { "/addnewsport", "/viewsports", "/searchsports", "/addresults", "/sportsclubs",
+		"/addnewsportclub", "/add" })
 public class AdminServices extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminDao adminDao = new AdminDaoImpl();
-
+	private SharedDaoImpl sharedDao = new SharedDaoImpl();
 	private SportsIDGenerator sid = new SportsIDGenerator();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -30,15 +31,19 @@ public class AdminServices extends HttpServlet {
 
 		String url = request.getRequestURI();
 		System.out.println("url is " + url);
-		if (url.endsWith("addsports")) {
+		if (url.endsWith("addnewsport")) {
 			String sId = sid.getSportID(); // Auto generated ID
 			String sName = request.getParameter("sname");
-			String sClub = request.getParameter("sclub");
+			HttpSession hs = request.getSession();
+			String scID = hs.getAttribute("scid").toString();
+			int scid = Integer.parseInt(scID);
+			String sClub = sharedDao.getSportClubName(scid);
+			System.out.println("SCNAME is " + sClub);
 			int sPrice = Integer.parseInt(request.getParameter("sprice"));
 			int players = Integer.parseInt(request.getParameter("players"));
 			String sType = request.getParameter("stype");
 			Sports sports = Sports.builder().sid(sId).sname(sName).sclub(sClub).sprice(sPrice).players(players)
-					.stype(sType).build();
+					.stype(sType).scid(scid).build();
 			String status;
 			if (adminDao.addSport(sports)) {
 				status = "Success";
@@ -49,17 +54,35 @@ public class AdminServices extends HttpServlet {
 			}
 
 		} else if (url.endsWith("viewsports")) {
-			List<Sports> allSports = adminDao.getAllSports();
+			List<Sports> allSports = sharedDao.getAllSports();
 			request.setAttribute("allSports", allSports);
 			RequestDispatcher rd = request.getRequestDispatcher("viewsports.jsp");
 			rd.forward(request, response);
 
 		} else if (url.endsWith("searchsports")) {
 			String sId = request.getParameter("sid");
-			List<Sports> searchSports = adminDao.searchSports(sId);
+			List<Sports> searchSports = sharedDao.searchSports(sId);
 			request.setAttribute("allSports", searchSports);
 			RequestDispatcher rd = request.getRequestDispatcher("viewsports.jsp");
 			rd.forward(request, response);
+		} else if (url.endsWith("sportsclubs")) {
+			List<SportsClubs> sportsClubList = sharedDao.getAllSportsClubs();
+			request.setAttribute("sportsclubs", sportsClubList);
+			RequestDispatcher rd = request.getRequestDispatcher("addsportsclub.jsp");
+			rd.forward(request, response);
+
+		} else if (url.endsWith("addnewsportclub")) {
+			String scname = request.getParameter("scname");
+			if (adminDao.addSportsClub(scname)) {
+				response.getWriter().append("status : Success");
+			} else {
+				response.getWriter().append("status : failure");
+			}
+		} else if (url.endsWith("add")) {
+			HttpSession hs = request.getSession();
+			String scid = request.getParameter("scid");
+			hs.setAttribute("scid", scid);
+			response.sendRedirect("addsports.html");
 		}
 
 	}

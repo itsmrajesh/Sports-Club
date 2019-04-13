@@ -1,12 +1,14 @@
 package com.sportsclub.admindao;
 
-import java.util.List;
-
 import com.sportsclub.domain.Sports;
+import com.sportsclub.domain.SportsClubs;
 
 public interface AdminDao {
 	boolean addSport(Sports s);
-	List<Sports> getAllSports();
-	List<Sports> searchSports(String sId);
-	
+
+	int getSportsCount();
+
+	int getSportPrice(String sID);
+
+	boolean addSportsClub(String sc);
 }

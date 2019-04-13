@@ -1,11 +1,11 @@
 package com.sportsclub.service;
 
-import com.sportsclub.dao.SportsClubDao;
-import com.sportsclub.dao.SportsClubDaoImpl;
+import com.sportsclub.dao.UserAccountDao;
+import com.sportsclub.dao.UserAccountDaoImpl;
 import com.sportsclub.domain.Profile;
 
 public class SportsClubServiceImpl implements SportsClubService {
-	private SportsClubDao sportsclubdao = new SportsClubDaoImpl();
+	private UserAccountDao sportsclubdao = new UserAccountDaoImpl();
 
 	@Override
 	public boolean addUser(Profile p) {

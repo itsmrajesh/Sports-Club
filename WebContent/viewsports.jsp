@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
 <!DOCTYPE html>
 <html>
 <title>SportsClub</title>
@@ -76,24 +78,23 @@ th, td {
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="index.html"><span
+				<li><a href="logout"><span
 						class="glyphicon glyphicon-sign-up"></span> Logout</a></li>
 			</ul>
 		</div>
 	</nav>
 
-	<br>
-	<br>
+	
 	<center>
 		<h2>
-			<font Color="red" size="8px" face="arial">VIEW SPORTS 
+			<font Color="red" size="8px" face="arial">VIEWING SPORTS 
 		</h2>
 	</center>
 	</font>
-	<br>
+	
 
 	<center>
-		<table id="customers"
+		<table id="customers">
 			</center>
 			<tr>
 				<th>SID</th>

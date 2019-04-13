@@ -92,27 +92,27 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="home.html"><span class="glyphicon glyphicon-sign-up"></span> Logout</a></li>
+                <li><a href="logout"><span class="glyphicon glyphicon-sign-up"></span> Logout</a></li>
             </ul>
         </div>
     </nav>
 
-    <center><h2><font Color="white" size="8px" face="arial">ADD SPORTS</font></h2></center>
+    <center><h2><font Color="white" size="8px" face="arial">ADD NEW SPORTS</font></h2></center>
 
-    <form action="addsports" method="post">
+    <form action="addnewsport" method="post">
         <div class="container">
           <label for="sname"><b>SportsName</b></label>
           <input type="text" placeholder="Enter Sports name" name="sname" required><br>
       
-          <label for="sclub"><b>SportsClub</b></label>
-          <input type="text" placeholder="Enter sports club name" name="sclub" required><br>
-          <label for="players"><b>AddPlayers</b></label>
+         <!--  <label for="sclub"><b>SportsClub</b></label>
+          <input type="text" placeholder="Enter sports club name" name="sclub" required><br> -->
+          <label for="players"><b>No of Players</b></label>
           <input type="number" placeholder="Enter no of Players" name="players" required><br>
 
-          <label for="sprice"><b>SportsPrice</b></label>
-          <input type="number" placeholder="Enter sports Price" name="sprice" required><br>
+          <label for="sprice"><b>Sport Price</b></label>
+          <input type="range" placeholder="Enter sports Price" name="sprice" required><br>
 
-          <label for="stype"><b>SportsType</b></label>  
+          <label for="stype"><b>Sport Type</b></label>  
           <input type="radio" name="stype" value="indoor"> Indoor
           <input type="radio" name="stype" value="outdoor"> Outdoor<br>
          

@@ -12,6 +12,7 @@ import lombok.Setter;
 public class Sports {
 	private String sid;
 	private String sname;
+	private int scid;
 	private String sclub;
 	private int sprice;
 	private int players;

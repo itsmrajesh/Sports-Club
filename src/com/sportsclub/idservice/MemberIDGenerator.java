@@ -1,14 +1,14 @@
 package com.sportsclub.idservice;
 
-import com.sportsclub.dao.SportsClubDao;
-import com.sportsclub.dao.SportsClubDaoImpl;
+import com.sportsclub.dao.UserAccountDao;
+import com.sportsclub.dao.UserAccountDaoImpl;
 
 public class MemberIDGenerator {
 	private String prefix = "SCM";
 	private int year = 19;
 	private String userType = "U";
 	private static int count = 100;
-	private SportsClubDao sportsclubdao = new SportsClubDaoImpl();
+	private UserAccountDao sportsclubdao = new UserAccountDaoImpl();
 
 	public String getID() {
 		int localCount = MemberIDGenerator.count;

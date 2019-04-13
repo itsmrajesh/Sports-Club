@@ -10,27 +10,29 @@ import java.util.List;
 
 import com.sportsclub.dbutil.DBUtil;
 import com.sportsclub.domain.Sports;
+import com.sportsclub.domain.SportsClubs;
 
 public class AdminDaoImpl implements AdminDao {
 	DBUtil dbutil = DBUtil.obj;
 	private Connection con;
-	private Statement stmt;
-	private PreparedStatement pstmt;
+	private Statement st;
+	private PreparedStatement pst;
 	private ResultSet rs;
 
 	@Override
 	public boolean addSport(Sports s) {
-		String addSportsQuery = "INSERT INTO SPORTSDATA VALUES (?,?,?,?,?,?)";
+		String addSportsQuery = "INSERT INTO SPORTSDATA VALUES (?,?,?,?,?,?,?)";
 		try {
 			con = dbutil.getConnection();
-			pstmt = con.prepareStatement(addSportsQuery);
-			pstmt.setString(1, s.getSid());
-			pstmt.setString(2, s.getSname());
-			pstmt.setString(3, s.getSclub());
-			pstmt.setInt(4, s.getSprice());
-			pstmt.setInt(5, s.getPlayers());
-			pstmt.setString(6, s.getStype());
-			int i = pstmt.executeUpdate();
+			pst = con.prepareStatement(addSportsQuery);
+			pst.setString(1, s.getSid());
+			pst.setString(2, s.getSname());
+			pst.setString(3, s.getSclub());
+			pst.setInt(4, s.getSprice());
+			pst.setInt(5, s.getPlayers());
+			pst.setString(6, s.getStype());
+			pst.setInt(7, s.getScid());
+			int i = pst.executeUpdate();
 			if (i > 0) {
 				System.out.println("new Sport inserted.... for " + s.getSname());
 				return true;
@@ -44,56 +46,57 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public List<Sports> getAllSports() {
-		String viewQuery = "SELECT * FROM SPORTSDATA";
-		
-		List<Sports> sportsList = new ArrayList<>();
+	public int getSportPrice(String sID) {
+		String searchViewQuery = "SELECT sprice FROM SPORTSDATA WHERE SID=?";
+		int sPrice = 0;
 		try {
 			con = dbutil.getConnection();
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(viewQuery);
+			pst = con.prepareStatement(searchViewQuery);
+			pst.setString(1, sID);
+			rs = pst.executeQuery();
 			while (rs.next()) {
-				String sId = rs.getString("sid");
-				String sName = rs.getString("sname");
-				String sClub = rs.getString("sclub");
-				int sPrice = rs.getInt("sprice");
-				int players = rs.getInt("players");
-				String sType = rs.getString("stype");
-				Sports sports = Sports.builder().sid(sId).sname(sName).sclub(sClub).sprice(sPrice).players(players)
-						.stype(sType).build();
-				sportsList.add(sports);
+				sPrice = rs.getInt("sprice");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return sportsList;
+		return sPrice;
 	}
 
 	@Override
-	public List<Sports> searchSports(String sID) {
-		String searchViewQuery = "SELECT * FROM SPORTSDATA WHERE SID=?";
-		Sports sports = null;
-		List<Sports> searchList = new ArrayList<>();
+	public int getSportsCount() {
+		String userCountQuery = "SELECT COUNT(SID) FROM SPORTSDATA ";
+		int count = 0;
 		try {
 			con = dbutil.getConnection();
-			pstmt = con.prepareStatement(searchViewQuery);
-			pstmt.setString(1, sID);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				String sId = rs.getString("sid");
-				String sName = rs.getString("sname");
-				String sClub = rs.getString("sclub");
-				int sPrice = rs.getInt("sprice");
-				int players = rs.getInt("players");
-				String sType = rs.getString("stype");
-				sports = Sports.builder().sid(sId).sname(sName).sclub(sClub).sprice(sPrice).players(players)
-						.stype(sType).build();
-				searchList.add(sports);
+			st = con.createStatement();
+			rs = st.executeQuery(userCountQuery);
+			if (rs.next()) {
+				count = rs.getInt(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return searchList;
+		System.out.println("total count of sports is " + count);
+		return count;
+	}
+
+	@Override
+	public boolean addSportsClub(String scname) {
+		String insertSportsClubQuery = "INSERT INTO SPORTSCLUBS (SCNAME) VALUES (?)";
+		try {
+			con = dbutil.getConnection();
+			pst = con.prepareStatement(insertSportsClubQuery);
+			pst.setString(1, scname);
+			int i = pst.executeUpdate();
+			if (i == 1) {
+				System.out.println("Sports Club added Successfully with name :- " + scname);
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

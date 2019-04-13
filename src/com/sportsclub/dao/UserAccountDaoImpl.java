@@ -1,12 +1,15 @@
 package com.sportsclub.dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.sportsclub.dbutil.DBUtil;
+import com.sportsclub.domain.BookingSports;
 import com.sportsclub.domain.Profile;
 import com.sportsclub.usersession.UserSession;
 
-public class SportsClubDaoImpl implements SportsClubDao {
+public class UserAccountDaoImpl implements UserAccountDao {
 	DBUtil dbutil = DBUtil.obj;
 	private Connection con;
 	private Statement stmt;
@@ -30,24 +33,6 @@ public class SportsClubDaoImpl implements SportsClubDao {
 			e.printStackTrace();
 		}
 		System.out.println("total count of users is " + count);
-		return count;
-	}
-
-	@Override
-	public int getSportsCount() {
-		String userCountQuery = "SELECT COUNT(SID) FROM SPORTSDATA ";
-		int count = 0;
-		try {
-			con = dbutil.getConnection();
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(userCountQuery);
-			if (rs.next()) {
-				count = rs.getInt(1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		System.out.println("total count of sports is " + count);
 		return count;
 	}
 
@@ -177,5 +162,32 @@ public class SportsClubDaoImpl implements SportsClubDao {
 		}
 		return "";
 	}
+
+	@Override
+	public Profile getUserDetails(String uid) {
+		String getUserQuery = "SELECT UID,NAME,EMAIL,ADDRESS,MOBILE FROM SIGNUPDATA WHERE UID=?";
+		Profile profile = null;
+		try {
+			con = dbutil.getConnection();
+			pstmt = con.prepareStatement(getUserQuery);
+			pstmt.setString(1, uid);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				String userId = rs.getString("uid");
+				String name = rs.getString("name");
+				String email = rs.getString("email");
+				long mobile = rs.getLong("mobile");
+				String address = rs.getString("address");
+				profile = Profile.builder().userId(userId).name(name).email(email).address(address).mobile(mobile)
+						.build();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return profile;
+	}
+
+	
+
 
 }
