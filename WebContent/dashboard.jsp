@@ -109,25 +109,18 @@
 	</div> <br><br>
 <table id="sports" align="center">
 		<tr>
-			<th>SID</th>
-			<th>SportsName</th>
-			<th>Sports Club</th>
-			<th>Fees</th>
-			<th>No.of.Players</th>
-			<th>Sport Type</th>
-			<th>Book Now</th>
-		</tr>
-		<c:forEach items="${allSports}" var="allSport">
 			<tr>
-				<td>${allSport.sid}</td>
-				<td>${allSport.sname}</td>
-				<td>${allSport.sclub}</td>
-				<td>${allSport.sprice}</td>
-				<td>${allSport.players}</td>
-				<td>${allSport.stype}</td>
-				<td><button>
-						<a href="book?sid=${allSport.sid}"> Book Now</a>
-					</button></td>
+			<th>CLUB ID</th>
+			<th>CLUB Name</th>
+			<th>Book Sport</th>
+		</tr>
+		</tr>
+		<c:forEach items="${allSportsclubs}" var="club">
+			<tr>
+				<td>${club.scid}</td>
+				<td>${club.scname}</td>
+				<td><a href="viewsportsuser?scid=${club.scid}"><button>Book Now</button></a>
+					</td>
 			</tr>
 		</c:forEach>
 	</table>

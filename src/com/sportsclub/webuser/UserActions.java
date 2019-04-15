@@ -17,6 +17,7 @@ import com.sportsclub.dao.UserAccountDao;
 import com.sportsclub.dao.UserAccountDaoImpl;
 import com.sportsclub.domain.Profile;
 import com.sportsclub.domain.Sports;
+import com.sportsclub.domain.SportsClubs;
 import com.sportsclub.idservice.MemberIDGenerator;
 import com.sportsclub.service.SportsClubService;
 import com.sportsclub.service.SportsClubServiceImpl;
@@ -118,8 +119,8 @@ public class UserActions extends HttpServlet {
 			}
 
 		} else if (url.endsWith("dashboard")) {
-			List<Sports> allSports = sharedDao.getAllSports();
-			request.setAttribute("allSports", allSports);
+			List<SportsClubs> allSportsClubs = sharedDao.getAllSportsClubs();
+			request.setAttribute("allSportsclubs", allSportsClubs);
 			RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
 			rd.forward(request, response);
 		} else if (url.endsWith("logout")) {

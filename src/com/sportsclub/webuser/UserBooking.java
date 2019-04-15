@@ -25,7 +25,7 @@ import com.sportsclub.shared_dao.SharedDaoImpl;
 /**
  * Servlet implementation class UserBooking
  */
-@WebServlet(urlPatterns = { "/book", "/booksport", "/viewbooking" })
+@WebServlet(urlPatterns = { "/viewsportsuser", "/booksport", "/viewbooking" })
 public class UserBooking extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminDao adminDao = new AdminDaoImpl();
@@ -39,12 +39,14 @@ public class UserBooking extends HttpServlet {
 		String url = request.getRequestURI();
 		RequestDispatcher rd;
 		HttpSession hs = request.getSession();
-		String sid = request.getParameter("sid");
 		String uid = hs.getAttribute("uid").toString();
-		if (url.endsWith("book")) {
-			hs.setAttribute("sid", sid);
-			List<Sports> searchSports = sharedDao.searchSports(sid);
-			request.setAttribute("allSports", searchSports);
+		if (url.endsWith("viewsportsuser")) {
+			int scid = Integer.parseInt(request.getParameter("scid"));
+			hs.setAttribute("scid", scid);
+			List<Sports> viewSportsIndoor = sharedDao.getAllSportsByType(scid, "INDOOR");
+			request.setAttribute("allSportsindoor", viewSportsIndoor);
+			List<Sports> viewSportsOutdoor = sharedDao.getAllSportsByType(scid, "OUTDOOR");
+			request.setAttribute("allSportsoutdoor", viewSportsOutdoor);
 			rd = request.getRequestDispatcher("booking.jsp");
 			rd.forward(request, response);
 		} else if (url.endsWith("booksport")) {

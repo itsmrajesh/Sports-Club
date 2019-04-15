@@ -11,7 +11,7 @@ import com.sportsclub.domain.SportsClubs;
 public class SharedDaoImpl implements SharedDao {
 	DBUtil dbutil = DBUtil.obj;
 	private Connection con;
-	private Statement stmt;
+	private Statement st;
 	private PreparedStatement pst;
 	private ResultSet rs;
 
@@ -21,8 +21,8 @@ public class SharedDaoImpl implements SharedDao {
 		List<Sports> sportsList = new ArrayList<>();
 		try {
 			con = dbutil.getConnection();
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(viewQuery);
+			st = con.createStatement();
+			rs = st.executeQuery(viewQuery);
 			while (rs.next()) {
 				String sId = rs.getString("sid");
 				String sName = rs.getString("sname");
@@ -89,7 +89,7 @@ public class SharedDaoImpl implements SharedDao {
 		String getSportNameQuery = "SELECT SCNAME FROM SPORTSCLUBS WHERE SCID = ?";
 		try {
 			con = dbutil.getConnection();
-			pst=con.prepareStatement(getSportNameQuery);
+			pst = con.prepareStatement(getSportNameQuery);
 			pst.setInt(1, scid);
 			rs = pst.executeQuery();
 			while (rs.next()) {
@@ -99,5 +99,26 @@ public class SharedDaoImpl implements SharedDao {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public List<Sports> getAllSportsByType(int scid, String stype) {
+		List<Sports> sportsList = new ArrayList<>();
+		String viewQuery = "SELECT * FROM SPORTSDATA WHERE SCID = ? AND STYPE =?";
+		try {
+			con = dbutil.getConnection();
+			pst = con.prepareStatement(viewQuery);
+			pst.setInt(1, scid);
+			pst.setString(2, stype);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				Sports s = Sports.builder().sid(rs.getString(1)).sname(rs.getString(2)).sclub(rs.getString(3))
+						.sprice(rs.getInt(4)).players(rs.getInt(5)).stype(rs.getString(6)).scid(rs.getInt(7)).build();
+				sportsList.add(s);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return sportsList;
 	}
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="cc"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,13 +74,13 @@ hr {
 <title>|Booking|</title>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">Sports Club System</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li><a href="#">Home</a></li>
+				<li><a href="dashboard">Home</a></li>
 				<li class="active"><a href="dashboard">Back</a></li>
 
 			</ul>
@@ -90,28 +91,52 @@ hr {
 			</ul>
 		</div>
 	</nav>
-<table id="sports" align="center">
-		<tr>
-			<th>SID</th>
-			<th>SportsName</th>
-			<th>Sports Club</th>
-			<th>Fees</th>
-			<th>No.of.Players</th>
-			<th>Sport Type</th>
-		</tr>
-		<c:forEach items="${allSports}" var="allSport">
+	<div>
+<h1 align="center"> InDoor Sports</h1>
+		<table id="sports" align="center">
 			<tr>
-				<td>${allSport.sid}</td>
-				<td>${allSport.sname}</td>
-				<td>${allSport.sclub}</td>
-				<td>${allSport.sprice}</td>
-				<td>${allSport.players}</td>
-				<td>${allSport.stype}</td>
+				<th>SID</th>
+				<th>SportsName</th>
+				<th>Sports Club</th>
+				<th>Fees</th>
+				<th>No.of.Players</th>
+				<th>Sport Type</th>
 			</tr>
-		</c:forEach>
-	</table>
-	<br>
-	<form action="booksport">
+			<c:forEach items="${allSportsindoor}" var="allSport">
+				<tr>
+					<td>${allSport.sid}</td>
+					<td>${allSport.sname}</td>
+					<td>${allSport.sclub}</td>
+					<td>${allSport.sprice}</td>
+					<td>${allSport.players}</td>
+					<td>${allSport.stype}</td>
+				</tr>
+			</c:forEach>
+		</table>
+		<br>
+<h1 align="center"> OutDoor Sports</h1>
+		<table id="sports" align="center">
+			<tr>
+				<th>SID</th>
+				<th>SportsName</th>
+				<th>Sports Club</th>
+				<th>Fees</th>
+				<th>No.of.Players</th>
+				<th>Sport Type</th>
+			</tr>
+			<cc:forEach items="${allSportsoutdoor}" var="allSport">
+				<tr>
+					<td>${allSport.sid}</td>
+					<td>${allSport.sname}</td>
+					<td>${allSport.sclub}</td>
+					<td>${allSport.sprice}</td>
+					<td>${allSport.players}</td>
+					<td>${allSport.stype}</td>
+				</tr>
+			</cc:forEach>
+		</table>
+	</div>
+	<!-- <form action="booksport">
         <div class="container">
           <label for="name"><b>Enter Date</b></label>
           <input type="date" placeholder="Enter Date for Booking" name="date" required><br>
@@ -119,6 +144,6 @@ hr {
           <input type="time" placeholder="Enter time for Booking" name="time" required><br>      
           <button type="submit" class="registerbtn">Submit</button>
         </div>
-      </form>
+      </form> -->
 </body>
 </html>

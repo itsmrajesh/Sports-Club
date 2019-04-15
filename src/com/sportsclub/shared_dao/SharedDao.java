@@ -14,5 +14,7 @@ public interface SharedDao {
 	List<SportsClubs> getAllSportsClubs();
 	
 	String getSportClubName(int scid);
+	
+	List<Sports> getAllSportsByType(int scid,String stype);
 
 }
