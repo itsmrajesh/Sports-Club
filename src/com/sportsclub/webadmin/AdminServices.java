@@ -46,11 +46,13 @@ public class AdminServices extends HttpServlet {
 					.stype(sType).scid(scid).build();
 			String status;
 			if (adminDao.addSport(sports)) {
-				status = "Success";
-				response.getWriter().append("status : " + status);
+				request.setAttribute("status", "SUCCESS");
+				RequestDispatcher rd = request.getRequestDispatcher("sportaddedmessage.jsp");
+				rd.forward(request, response);
 			} else {
-				status = "Failure";
-				response.getWriter().append("status : " + status);
+				request.setAttribute("status", "FAILURE");
+				RequestDispatcher rd = request.getRequestDispatcher("sportaddedmessage.jsp");
+				rd.forward(request, response);
 			}
 
 		} else if (url.endsWith("viewsports")) {
@@ -65,6 +67,8 @@ public class AdminServices extends HttpServlet {
 			request.setAttribute("allSports", searchSports);
 			RequestDispatcher rd = request.getRequestDispatcher("viewsports.jsp");
 			rd.forward(request, response);
+			
+			
 		} else if (url.endsWith("sportsclubs")) {
 			List<SportsClubs> sportsClubList = sharedDao.getAllSportsClubs();
 			request.setAttribute("sportsclubs", sportsClubList);
@@ -73,8 +77,10 @@ public class AdminServices extends HttpServlet {
 
 		} else if (url.endsWith("addnewsportclub")) {
 			String scname = request.getParameter("scname");
-			if (adminDao.addSportsClub(scname)) {
-				response.getWriter().append("status : Success");
+			String location = request.getParameter("location");
+			String contactNumber=request.getParameter("contactnumber");
+			if (adminDao.addSportsClub(scname,location,contactNumber)) {
+				response.sendRedirect("sportsclubs");
 			} else {
 				response.getWriter().append("status : failure");
 			}

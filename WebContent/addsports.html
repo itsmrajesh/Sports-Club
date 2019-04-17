@@ -2,129 +2,97 @@
 <html>
 
 <head>
-    <title>SportsClub</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <style>
-        body {
-          font-family: Arial, Helvetica, sans-serif;
-          background-color: #5DF85D;
-        }
-        
-        * {
-          box-sizing: border-box;
-        }
-        
-        /* Add padding to containers */
-        .container {
-          padding: 16px;
-          background-color: white;
-        }
-        
-        /* Full-width input fields */
-        input[type=text], input[type=number] {
-          width: 35%;
-          padding: 15px;
-          margin: 5px 0 22px 0;
-          display: inline-block;
-          border: none;
-          background: #f1f1f1;
-        }
-        
-        input[type=text]:focus, input[type=number]:focus {
-          background-color: #ddd;
-          outline: none;
-        }
+<title>SportsClub</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<style>
+h1 {
+	text-align: center;
+	color: green;
+}
 
-        
-        
-        /* Overwrite default styles of hr */
-        hr {
-          border: 1px solid #f1f1f1;
-          margin-bottom: 25px;
-        }
-        
-        /* Set a style for the submit button */
-        .registerbtn {
-          background-color: #F00A0A;
-          color: white;
-          padding: 10px 15px;
-          margin: 8px 4px;
-          border: none;
-          cursor: pointer;
-          width: 8%;
-          opacity: 0.9;
-        }
-        
-        .registerbtn:hover {
-          opacity: 1;
-        }
-        .registerbtn {border-radius: 8px;}
-        
-        /* Add a blue text color to links */
-        
-        
-        /* Set a grey background color and center the text of the "sign in" section */
-       
+body {
+	background-color: #cccccc;
+}
 
-        
-       
-        </style>
+#bck {
+  background-image: url(images/footballbg.png);
+  background-position: right bottom, left top;
+  background-repeat: no-repeat;
+ background-size: 300px, 350px;
+}
+</style>
 
 </head>
-
-
-
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Sports Club System</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
-                <li class="active"><a href="admin.html">Back</a></li>
-                
-            </ul>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Sports Club System</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="admin.html">Home</a></li>
+				<li class="active"><a href="sportsclubs">Back</a></li>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="logout"><span class="glyphicon glyphicon-sign-up"></span> Logout</a></li>
-            </ul>
-        </div>
-    </nav>
+			</ul>
 
-    <center><h2><font Color="white" size="8px" face="arial">ADD NEW SPORTS</font></h2></center>
-
-    <form action="addnewsport" method="post">
-        <div class="container">
-          <label for="sname"><b>SportsName</b></label>
-          <input type="text" placeholder="Enter Sports name" name="sname" required><br>
-      
-         <!--  <label for="sclub"><b>SportsClub</b></label>
-          <input type="text" placeholder="Enter sports club name" name="sclub" required><br> -->
-          <label for="players"><b>No of Players</b></label>
-          <input type="number" placeholder="Enter no of Players" name="players" required><br>
-
-          <label for="sprice"><b>Sport Price</b></label>
-          <input type="number" placeholder="Enter sports Price" name="sprice" required><br>
-
-          <label for="stype"><b>Sport Type</b></label>  
-          <input type="radio" name="stype" value="indoor"> Indoor
-          <input type="radio" name="stype" value="outdoor"> Outdoor<br>
-         
-          <button type="submit" class="registerbtn">Submit</button>
-        </div>
-        
-      
-      </form>
-
-    
-
-    
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="logout">Logout &nbsp;<span
+						class="glyphicon glyphicon-off"></span></a></li>
+			</ul>
+		</div>
+	</nav>
+	<h1>Add New Sport to club</h1>
+	<div id="bck">
+	<div class="container">
+		<form action="addnewsport" method="post">
+			<div class="input-group">
+				<label for="sname" class="mb-2 mr-sm-2">Sport Name:</label> <input
+					id="sname" type="text" class="form-control" name="sname"
+					placeholder="Enter Sport Name" required>
+			</div>
+			<br>
+			<div class="input-group">
+				<label for="nop" class="mb-2 mr-sm-2">No of Players:</label> <input
+					id="nop" type="number" class="form-control" name="players"
+					placeholder="Enter No of Players" required>
+			</div>
+			<br>
+			<div class="input-group">
+				<label for="price" class="mb-2 mr-sm-2">Booking Price:</label> <input
+					id="price" type="number" class="form-control" name="sprice"
+					placeholder="Enter Booking Price" required>
+			</div>
+			<br>
+			<div class="input-group">
+				<label for="stype" class="mb-2 mr-sm-2">Sport Type: &nbsp;</label> <input
+					id="stype" type="radio" class="form" name="stype" value="INDOOR"
+					required>INDOOR &nbsp;&nbsp;<input id="stype" type="radio"
+					class="form" name="stype" value="OUTDOOR" required>OUTDOOR
+				&nbsp;
+			</div>
+			<br>
+			<div>
+				<input type="submit" name="submit" value="Add New Sport"
+					class="btn btn-success">&nbsp; <input type="reset"
+					name="reset" value=" Clear " class="btn btn-info">
+			</div>
+			<br> <a href="sportsclubs" class="btn btn-danger" role="button">Cancel</a>
+		</form>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	
+</div>
 </body>
 
 </html>

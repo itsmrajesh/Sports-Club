@@ -1,8 +1,10 @@
+drop database sportsclub;
+
 create database sportsclub;
 
 use sportsclub;
 
-create table sportsclubs(scid int auto_increment primary key , scname varchar(200) not null);
+create table sportsclubs(scid int auto_increment primary key , scname varchar(200) not null,location varchar(220),contactnumber varchar(12));
 
 alter table sportsclubs auto_increment=3000;
 

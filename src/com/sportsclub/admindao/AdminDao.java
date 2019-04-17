@@ -10,5 +10,5 @@ public interface AdminDao {
 
 	int getSportPrice(String sID);
 
-	boolean addSportsClub(String sc);
+	boolean addSportsClub(String scname,String loaction,String contactNumber);
 }

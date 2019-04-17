@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sports Club</title>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -12,35 +11,14 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>Sport Adding Status</title>
 <style>
-body {
-	background-color: #C8D7DB;
-}
-
-.mrc {
+h1 {
+	text-align: center;
 	color: green;
-	size: 5px;
-	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-	border: 0px;
-	padding-top: 25px;
-	padding-left: 35%;
-}
-
-.grid {
-	padding-top: 20%;
-}
-
-.mrc1 {
-	color: green;
-	size: 5px;
-	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-	border: 0px;
-	padding-top: 25px;
-	padding-left: 25%;
 }
 </style>
 </head>
-
 <body>
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -48,23 +26,14 @@ body {
 				<a class="navbar-brand" href="#">Sports Club System</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li><a href="dashboard">Home</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="logout">Logout &nbsp;<span
-						class="glyphicon glyphicon-off"></span></a></li>
+				<li><a href="admin.html">Home</a></li>
 			</ul>
 		</div>
 	</nav>
-	<div class="mrc1">
-		<br> <br>
-		<h1>
-			<%
-				out.println("Update Status :- " + request.getAttribute("status"));
-			%>
-		</h1>
-	</div>
-
+	<h1>
+		<%
+			out.println("Adding new Sport Status :- " + request.getAttribute("status"));
+		%>
+	</h1>
 </body>
-
 </html>

@@ -82,12 +82,14 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public boolean addSportsClub(String scname) {
-		String insertSportsClubQuery = "INSERT INTO SPORTSCLUBS (SCNAME) VALUES (?)";
+	public boolean addSportsClub(String scname,String location,String contactNumber) {
+		String insertSportsClubQuery = "INSERT INTO SPORTSCLUBS (SCNAME,LOCATION,CONTACTNUMBER) VALUES (?,?,?)";
 		try {
 			con = dbutil.getConnection();
 			pst = con.prepareStatement(insertSportsClubQuery);
 			pst.setString(1, scname);
+			pst.setString(2, location);
+			pst.setString(3, contactNumber);
 			int i = pst.executeUpdate();
 			if (i == 1) {
 				System.out.println("Sports Club added Successfully with name :- " + scname);

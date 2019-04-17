@@ -76,7 +76,8 @@ public class SharedDaoImpl implements SharedDao {
 			pst = con.prepareStatement(listSportsClubsQuery);
 			rs = pst.executeQuery();
 			while (rs.next()) {
-				clubList.add(SportsClubs.builder().scid(rs.getInt(1)).scname(rs.getString(2)).build());
+				clubList.add(SportsClubs.builder().scid(rs.getInt(1)).scname(rs.getString(2)).location(rs.getString(3))
+						.contactnumber(rs.getString(4)).build());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -120,5 +121,24 @@ public class SharedDaoImpl implements SharedDao {
 			e.printStackTrace();
 		}
 		return sportsList;
+	}
+
+	@Override
+	public List<SportsClubs> searchSportsClubs(int scid) {
+		String getSportNameQuery = "SELECT * FROM SPORTSCLUBS WHERE SCID = ?";
+		List<SportsClubs> list = new ArrayList<>();
+		try {
+			con = dbutil.getConnection();
+			pst = con.prepareStatement(getSportNameQuery);
+			pst.setInt(1, scid);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				list.add(SportsClubs.builder().scid(rs.getInt(1)).scname(rs.getString(2)).location(rs.getString(3))
+						.contactnumber(rs.getString(4)).build());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

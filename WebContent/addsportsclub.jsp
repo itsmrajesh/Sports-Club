@@ -18,64 +18,14 @@
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <link rel="stylesheet" type="text/css" href="css/table.css" />
 <style>
-body {
-	font-family: Arial, Helvetica, sans-serif;
-	background-color: #5DF85D;
+h1 {
+	text-align: center;
+	color: green;
 }
-
-* {
-	box-sizing: border-box;
+body  {
+  background-image: url("images/bg2f.jpg");
+  background-color: #cccccc;
 }
-
-/* Add padding to containers */
-.container {
-	padding: 16px;
-	background-color: white;
-}
-
-/* Full-width input fields */
-input[type=text], input[type=number] {
-	width: 35%;
-	padding: 15px;
-	margin: 5px 0 22px 0;
-	display: inline-block;
-	border: none;
-	background: #f1f1f1;
-}
-
-input[type=text]:focus, input[type=number]:focus {
-	background-color: #ddd;
-	outline: none;
-}
-
-/* Overwrite default styles of hr */
-hr {
-	border: 1px solid #f1f1f1;
-	margin-bottom: 25px;
-}
-
-/* Set a style for the submit button */
-.registerbtn {
-	background-color: #F00A0A;
-	color: white;
-	padding: 10px 15px;
-	margin: 8px 4px;
-	border: none;
-	cursor: pointer;
-	width: 8%;
-	opacity: 0.9;
-}
-
-.registerbtn:hover {
-	opacity: 1;
-}
-
-.registerbtn {
-	border-radius: 8px;
-}
-
-/* Add a blue text color to links */
-/* Set a grey background color and center the text of the "sign in" section */
 </style>
 </head>
 <body>
@@ -85,46 +35,42 @@ hr {
 				<a class="navbar-brand" href="#">Sports Club System</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li><a href="#">Home</a></li>
+				<li><a href="admin.html">Home</a></li>
 				<li class="active"><a href="admin.html">Back</a></li>
-
+				<li><a href="addnewclub.html">Add New Club &nbsp; <span
+						class="glyphicon glyphicon-plus"></span>
+				</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="logout"><span
-						class="glyphicon glyphicon-sign-up"></span> Logout</a></li>
+				<li><a href="logout">Logout &nbsp;<span
+						class="glyphicon glyphicon-off"></span></a></li>
 			</ul>
 		</div>
 	</nav>
 
 	<h1>Available Sports Clubs</h1>
-	<table id="sports" align="left">
+	<table id="sports" align="center">
 		<tr>
 			<th>CLUB ID</th>
 			<th>CLUB Name</th>
+			<th>Location</th>
+			<th>Contact Number</th>
 			<th>Add Sport</th>
 		</tr>
 		<c:forEach items="${sportsclubs}" var="club">
 			<tr>
 				<td>${club.scid}</td>
 				<td>${club.scname}</td>
-				<td><button>
-						<a href="add?scid=${club.scid}"> Add New Sport</a>
-					</button></td>
+				<td>${club.location}</td>
+				<td>${club.contactnumber}</td>
+				<td><a href="add?scid=${club.scid}"> <button>Add New Sport</button></a></td>
 			</tr>
 		</c:forEach>
 	</table>
 
 
-		<div align="right">
-	<div class="container">
-			<form action="addnewsportclub">
-				<label for="scname">Enter Sport Club Name </label> <br><input
-					type="text" placeholder="Enter Club name " required name="scname"><br>
-				<input type="submit" value="Add New Club">
-			</form>
-		</div>
-	</div>
+
 
 </body>
 </html>

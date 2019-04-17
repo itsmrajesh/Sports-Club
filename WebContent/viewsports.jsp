@@ -78,8 +78,8 @@ th, td {
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="logout"><span
-						class="glyphicon glyphicon-sign-up"></span> Logout</a></li>
+				<li><a href="logout">Logout &nbsp;<span
+						class="glyphicon glyphicon-off"></span></a></li>
 			</ul>
 		</div>
 	</nav>

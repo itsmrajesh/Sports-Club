@@ -12,4 +12,6 @@ import lombok.Setter;
 public class SportsClubs {
 	private int scid;
 	private String scname;
+	private String location;
+	private String contactnumber;
 }

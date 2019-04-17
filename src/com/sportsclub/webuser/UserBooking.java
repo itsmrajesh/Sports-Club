@@ -20,12 +20,13 @@ import com.sportsclub.dao.UserAccountDao;
 import com.sportsclub.dao.UserAccountDaoImpl;
 import com.sportsclub.domain.BookingSports;
 import com.sportsclub.domain.Sports;
+import com.sportsclub.domain.SportsClubs;
 import com.sportsclub.shared_dao.SharedDaoImpl;
 
 /**
  * Servlet implementation class UserBooking
  */
-@WebServlet(urlPatterns = { "/viewsportsuser", "/booksport", "/viewbooking" })
+@WebServlet(urlPatterns = { "/viewsportsforbooking", "/booksport", "/viewbooking", "/dobooking" })
 public class UserBooking extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminDao adminDao = new AdminDaoImpl();
@@ -38,32 +39,40 @@ public class UserBooking extends HttpServlet {
 			throws ServletException, IOException {
 		String url = request.getRequestURI();
 		RequestDispatcher rd;
-		HttpSession hs = request.getSession();
-		String uid = hs.getAttribute("uid").toString();
-		if (url.endsWith("viewsportsuser")) {
+		HttpSession session = request.getSession();
+		String uid = session.getAttribute("uid").toString();
+
+		if (url.endsWith("viewsportsforbooking")) {
 			int scid = Integer.parseInt(request.getParameter("scid"));
-			hs.setAttribute("scid", scid);
+			session.setAttribute("scid", scid);
 			List<Sports> viewSportsIndoor = sharedDao.getAllSportsByType(scid, "INDOOR");
 			request.setAttribute("allSportsindoor", viewSportsIndoor);
 			List<Sports> viewSportsOutdoor = sharedDao.getAllSportsByType(scid, "OUTDOOR");
 			request.setAttribute("allSportsoutdoor", viewSportsOutdoor);
+			List<SportsClubs> clubDetails = sharedDao.searchSportsClubs(scid);
+			request.setAttribute("clubdetails", clubDetails);
 			rd = request.getRequestDispatcher("booking.jsp");
 			rd.forward(request, response);
+
 		} else if (url.endsWith("booksport")) {
-			String sId = hs.getAttribute("sid").toString();
-			String date = request.getParameter("date"); // input from user
-			String time = request.getParameter("time"); // input from user
-			if (bs.doBooking(sId, uid, date, time)) {
-				request.setAttribute("status", "SUCCESS");
-				rd = request.getRequestDispatcher("status.jsp");
-				rd.forward(request, response);
-			} else {
-				request.setAttribute("status", "FAILURE");
-				rd = request.getRequestDispatcher("status.jsp");
-				rd.forward(request, response);
-			}
-		} else if (url.endsWith("viewbooking")) {
-			uid = hs.getAttribute("uid").toString();
+			int scid = Integer.parseInt(session.getAttribute("scid").toString());
+			String sid = request.getParameter("sid");
+			session.setAttribute("sid", sid);
+			List<Sports> searchSportList = sharedDao.searchSports(sid);
+			request.setAttribute("viewsport", searchSportList);
+			List<SportsClubs> clubDetails = sharedDao.searchSportsClubs(scid);
+			request.setAttribute("clubdetails", clubDetails);
+			rd = request.getRequestDispatcher("dobooking.jsp");
+			rd.forward(request, response);
+
+		} else if (url.endsWith("dobooking")) {
+			String sid=session.getAttribute("sid").toString();
+			String date = request.getParameter("date");
+			String startTime = request.getParameter("time");
+		}
+
+		else if (url.endsWith("viewbooking")) {
+			uid = session.getAttribute("uid").toString();
 			List<BookingSports> bookinglist = bookingDao.getUserBooking(uid);
 			request.setAttribute("booking", bookinglist);
 			rd = request.getRequestDispatcher("vewbooking.jsp");

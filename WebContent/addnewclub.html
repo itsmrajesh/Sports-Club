@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>Add New Club</title>
+<style type="text/css">
+
+h1 {
+	text-align: center;
+	color: green;
+}
+body  {
+  background-image: url("images/bg2f.jpg");
+  background-color: #cccccc;
+}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Sports Club System</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="#">Home</a></li>
+				<li class="active"><a href="admin.html">Back</a></li>
+
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="logout">Logout &nbsp;<span
+						class="glyphicon glyphicon-off"></span></a></li>
+			</ul>
+		</div>
+	</nav>
+<h1>Add New Sports Club to DataBase..</h1>
+
+	<!-- Actual Input form starts here-->
+
+	<div class="container">
+		<form action="addnewsportclub" method="post">
+			<div class="input-group">
+				<span class="input-group-addon"><i
+					class=" glyphicon glyphicon-pawn	"></i></span> <input id="cname"
+					type="text" class="form-control" name="scname"
+					placeholder="Club name" required>
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon"><i
+					class="glyphicon glyphicon-map-marker"></i></span> <input id="location"
+					type="text" class="form-control" name="location"
+					placeholder="location" required>
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon"><i
+					class="glyphicon glyphicon-earphone"></i></span> <input id="contactnumber"
+					type="text" class="form-control" name="contactnumber"
+					placeholder="Contact number" required pattern="^[0-9]{10}$" title="Enter Valid mobile number">
+			</div>
+			<br>
+			<div>
+				<input type="submit" name="submit" value="ADD"
+					class="btn btn-success">&nbsp; <input type="reset"
+					name="reset" value=" Clear " class="btn btn-info">
+			</div>
+			<br> <a href="sportsclubs" class="btn btn-danger" role="button">Cancel</a>
+		</form>
+	</div>
+</body>
+</html>

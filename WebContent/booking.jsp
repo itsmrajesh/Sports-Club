@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="cc"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="b"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,62 +14,30 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/table.css" />
-
+<link rel="stylesheet" type="text/css" href="css/clubtable.css" />
 <style>
+h1 {
+	text-align: center;
+	color: green;
+}
+
 body {
-	font-family: Arial, Helvetica, sans-serif;
-	background-color: #FD4AC1;
+	background-image: url("images/bg2f.jpg");
+	background-color: #cccccc;
 }
 
-* {
-	box-sizing: border-box;
+#bckright {
+	background-image: url(images/allsports.png);
+	background-position: right, left top;
+	background-repeat: no-repeat;
+	background-size: 450px, 450px;
 }
 
-/* Add padding to containers */
-.container {
-	padding: 16px;
-	background-color: white;
-}
-
-/* Full-width input fields */
-input[type=text], input[type=number] {
-	width: 35%;
-	padding: 15px;
-	margin: 5px 0 22px 0;
-	display: inline-block;
-	border: none;
-	background: #f1f1f1;
-}
-
-input[type=text]:focus, input[type=number]:focus {
-	background-color: #ddd;
-	outline: none;
-}
-
-/* Overwrite default styles of hr */
-hr {
-	border: 1px solid #f1f1f1;
-	margin-bottom: 25px;
-}
-
-/* Set a style for the submit button */
-.registerbtn {
-	background-color: #F00A0A;
-	color: white;
-	padding: 10px 15px;
-	margin: 8px 4px;
-	border: none;
-	cursor: pointer;
-	width: 8%;
-	opacity: 0.9;
-}
-
-.registerbtn:hover {
-	opacity: 1;
-}
-
-.registerbtn {
-	border-radius: 8px;
+#bck {
+	background-image: url(images/indiacricket.png);
+	background-position: left, left top;
+	background-repeat: no-repeat;
+	background-size: 450px, 450px;
 }
 </style>
 <title>|Booking|</title>
@@ -86,55 +55,84 @@ hr {
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="logout"><span
-						class="glyphicon glyphicon-sign-up"></span> Logout</a></li>
+				<li><a href="logout">Logout &nbsp;<span
+						class="glyphicon glyphicon-off"></span></a></li>
 			</ul>
 		</div>
 	</nav>
-	<div>
-<h1 align="center"> InDoor Sports</h1>
-		<table id="sports" align="center">
-			<tr>
-				<th>SID</th>
-				<th>SportsName</th>
-				<th>Sports Club</th>
-				<th>Fees</th>
-				<th>No.of.Players</th>
-				<th>Sport Type</th>
-			</tr>
-			<c:forEach items="${allSportsindoor}" var="allSport">
+	<div id="bck">
+		<div id="bckright">
+			<h1>Sports Club Details</h1>
+			<table id="club" align="center">
+				<b:forEach items="${clubdetails}" var="club">
+					<tr>
+						<th>Sports Club ID</th>
+						<td>${club.scid}</td>
+					</tr>
+					<tr>
+						<th>Club Name</th>
+						<td>${club.scname}</td>
+					</tr>
+					<tr>
+						<th>Club Location</th>
+						<td>${club.location}</td>
+					</tr>
+					<tr>
+						<th>Contact Number</th>
+						<td>${club.contactnumber}</td>
+					</tr>
+				</b:forEach>
+			</table>
+			<h1>InDoor Sports</h1>
+			<table id="sports" align="center">
 				<tr>
-					<td>${allSport.sid}</td>
-					<td>${allSport.sname}</td>
-					<td>${allSport.sclub}</td>
-					<td>${allSport.sprice}</td>
-					<td>${allSport.players}</td>
-					<td>${allSport.stype}</td>
+					<th>SID</th>
+					<th>SportsName</th>
+					<th>Sports Club</th>
+					<th>Fees</th>
+					<th>No.of.Players</th>
+					<th>Sport Type</th>
+					<th>Book Now</th>
 				</tr>
-			</c:forEach>
-		</table>
-		<br>
-<h1 align="center"> OutDoor Sports</h1>
-		<table id="sports" align="center">
-			<tr>
-				<th>SID</th>
-				<th>SportsName</th>
-				<th>Sports Club</th>
-				<th>Fees</th>
-				<th>No.of.Players</th>
-				<th>Sport Type</th>
-			</tr>
-			<cc:forEach items="${allSportsoutdoor}" var="allSport">
+				<c:forEach items="${allSportsindoor}" var="allSport">
+					<tr>
+						<td>${allSport.sid}</td>
+						<td>${allSport.sname}</td>
+						<td>${allSport.sclub}</td>
+						<td>${allSport.sprice}</td>
+						<td>${allSport.players}</td>
+						<td>${allSport.stype}</td>
+						<td><a href="booksport?sid=${allSport.sid}"><button>Book
+									Now</button></a></td>
+					</tr>
+				</c:forEach>
+			</table>
+			<br>
+			<h1>OutDoor Sports</h1>
+			<table id="sports" align="center">
 				<tr>
-					<td>${allSport.sid}</td>
-					<td>${allSport.sname}</td>
-					<td>${allSport.sclub}</td>
-					<td>${allSport.sprice}</td>
-					<td>${allSport.players}</td>
-					<td>${allSport.stype}</td>
+					<th>SID</th>
+					<th>SportsName</th>
+					<th>Sports Club</th>
+					<th>Fees</th>
+					<th>No.of.Players</th>
+					<th>Sport Type</th>
+					<th>Book Now</th>
 				</tr>
-			</cc:forEach>
-		</table>
+				<cc:forEach items="${allSportsoutdoor}" var="allSport">
+					<tr>
+						<td>${allSport.sid}</td>
+						<td>${allSport.sname}</td>
+						<td>${allSport.sclub}</td>
+						<td>${allSport.sprice}</td>
+						<td>${allSport.players}</td>
+						<td>${allSport.stype}</td>
+						<td><a href="booksport?sid=${allSport.sid}"><button>Book
+									Now</button></a></td>
+					</tr>
+				</cc:forEach>
+			</table>
+		</div>
 	</div>
 	<!-- <form action="booksport">
         <div class="container">

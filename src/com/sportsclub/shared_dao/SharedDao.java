@@ -13,8 +13,12 @@ public interface SharedDao {
 	
 	List<SportsClubs> getAllSportsClubs();
 	
+	List<SportsClubs> searchSportsClubs(int scid);
+	
 	String getSportClubName(int scid);
 	
 	List<Sports> getAllSportsByType(int scid,String stype);
+	
+	
 
 }

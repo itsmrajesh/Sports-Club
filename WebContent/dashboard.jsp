@@ -76,7 +76,7 @@
 				<a class="navbar-brand" href="#">Sports Club System</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li><a href="#">Home</a></li>
+				<li class="active"><a href="#">Home</a></li>
 				<div class="dropdown">
 					<button class="dropbtn">MY Account</button>
 					<div class="dropdown-content">
@@ -87,8 +87,8 @@
 				<li><a href="viewbooking">MY Booking </a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="logout"><span
-						class="glyphicon glyphicon-sign-up"></span> Logout</a></li>
+				<li><a href="logout">Logout &nbsp;<span
+						class="glyphicon glyphicon-off"></span></a></li>
 			</ul>
 		</div>
 	</nav>
@@ -112,6 +112,8 @@
 			<tr>
 			<th>CLUB ID</th>
 			<th>CLUB Name</th>
+			<th>Location</th>
+			<th>Contact Number</th>
 			<th>Book Sport</th>
 		</tr>
 		</tr>
@@ -119,7 +121,9 @@
 			<tr>
 				<td>${club.scid}</td>
 				<td>${club.scname}</td>
-				<td><a href="viewsportsuser?scid=${club.scid}"><button>Book Now</button></a>
+				<td>${club.location}</td>
+				<td>${club.contactnumber}</td>
+				<td><a href="viewsportsforbooking?scid=${club.scid}"><button>Book Now</button></a>
 					</td>
 			</tr>
 		</c:forEach>

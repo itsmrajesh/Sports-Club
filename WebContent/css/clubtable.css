@@ -1,0 +1,35 @@
+@charset "ISO-8859-1";
+#club {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 50%;
+}
+
+#club td, #club th {
+	border: 1px solid #ddd;
+	padding: 7px;
+}
+
+#club tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#club tr:nth-child(odd) {
+	background-color: #f2f2f2;
+}
+
+#club td {
+	text-align: center;
+}
+
+#club tr:hover {
+	background-color: #ddd;
+}
+
+#club th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: center;
+	background-color: #4d97a5;
+	color: white;
+}

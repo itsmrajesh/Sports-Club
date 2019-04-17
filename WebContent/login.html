@@ -8,6 +8,15 @@
 <link rel="stylesheet" type="text/css" href="css/demo.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+<style>
+
+body  {
+  background-image: url("images/loginbg.png");
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
 
 <script type="text/javascript">
 	function show() {
@@ -116,8 +125,9 @@
 
 							<p>
 								<label for="mobile" class="mobile" data-icon="&#x260E">MobileNumber</label>
-								<input id="mono" name="mobile" required="required" type="number"
+								<input id="mono" name="mobile" required type="text" pattern="^[0-9]{10}$" title="Enter Valid mobile number"
 									placeholder="Enter MobileNumber" />
+									
 							</p>
 
 							<p>
