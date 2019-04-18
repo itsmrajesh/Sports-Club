@@ -2,16 +2,25 @@
 <html>
 
 <head>
-<title>number</title>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/account.css" />
 <style>
-body {
-	box-sizing: border-box;
-}
+.imgdiv {
+	background-image: url(images/accountsettings.png);
+	background-position: right bottom, left top;
+	background-repeat: no-repeat;
+	background-size: 300px, 350px;
+} 
 /* Add padding to containers */
 .container1 {
 	padding: 16px;
-	background-color: #FFFFFF;
 }
 
 header {
@@ -21,7 +30,7 @@ header {
 	padding: 20px 30px 30px 300px;
 }
 /* Full-width input fields */
-input[type=number], input[type=number] {
+input[type=text], input[type=text] {
 	width: 25%;
 	padding: 10px;
 	margin: 3px 0 15px 0;
@@ -36,8 +45,8 @@ input[type=number]:focus, input[type=number]:focus {
 }
 /* Set a style for the submit button */
 .SUBMITbtn {
-	background-color: #070000;
-	color: #E8EEF3;
+	background-color: #1C9CEC;
+	color: #FFFFFF;
 	padding: 16px 20px;
 	margin: 4px 0;
 	border: none;
@@ -59,15 +68,7 @@ a {
 	text-align: center;
 }
 </style>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<title>Update Contact Number</title>
 </head>
 
 <body>
@@ -86,14 +87,22 @@ a {
 			</ul>
 		</div>
 	</nav>
+	<div class="imgdiv">
 	<form action="changephone" method="post">
 		<div class="container1">
 			<font size="6" color="brown" face="courier"> UPDATE PHONE
 				NUMBER<br>
-			</font> <input type="number" required name="newphone"
-				placeholder="Enter New Phone Number"><br>
-
+			</font> <input type="text" required name="newphone"
+				placeholder="Enter New Phone Number" pattern="^[0-9]{10}$" title="Enter Valid 10 Digit mobile number"><br>
 			<button type="submit" class="SUBMITbtn">Change Phone Number</button>
+		</div>
+		</form>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 		</div>
 </body>
 

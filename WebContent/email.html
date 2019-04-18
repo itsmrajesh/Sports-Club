@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/account.css" />
 <style>
-body {
-	box-sizing: border-box;
+.imgdiv {
+	background-image: url(images/accountsettings.png);
+	background-position: right bottom, left top;
+	background-repeat: no-repeat;
+	background-size: 300px, 350px;
 }
 
 header {
@@ -16,7 +28,6 @@ header {
 /* Add padding to containers */
 .container1 {
 	padding: 16px;
-	background-color: #FFFFFF;
 }
 
 /* Full-width input fields */
@@ -62,15 +73,7 @@ a {
 	text-align: center;
 }
 </style>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<title>Update Email</title>
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
@@ -90,13 +93,22 @@ a {
 			</ul>
 		</div>
 	</nav>
-	<form action="changeemail" method="post">
-		<div class="container1">
-			<font size="6" color="blue" face="courier"> UPDATE EMAIL-ID<br>
-			</font>
-				<input type="email" required name="newemail" placeholder="Enter New Email"><br>
-				<button type="submit" class="SUBMITbtn">SUBMIT</button>
-		</div>
+	<div class="imgdiv">
+		<form action="changeemail" method="post">
+			<div class="container1">
+				<font size="6" color="blue" face="courier"> UPDATE EMAIL-ID<br>
+				</font> <input type="email" required name="newemail"
+					placeholder="Enter New Email"><br>
+				<button type="submit" class="SUBMITbtn">Update Email</button>
+			</div>
+		</form>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+	</div>
 </body>
 
 </html>

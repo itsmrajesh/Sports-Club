@@ -1,0 +1,9 @@
+@charset "ISO-8859-1";
+
+body {
+	background-image: url(images/accountsettings.png);
+	background-color: #e6e874;
+	background-position: right bottom, left top;
+	background-repeat: no-repeat;
+	background-size: 300px, 350px;
+}
