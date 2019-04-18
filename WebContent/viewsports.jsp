@@ -15,49 +15,11 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/main.css" />
+<link rel="stylesheet" type="text/css" href="css/table.css" />
 <style>
-.container {
-	overflow: hidden
-}
-
-.tab {
-	float: left;
-}
-
-table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-}
-
-th, td {
-	padding: 15px;
-}
-
-#customers {
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-	border-collapse: collapse;
-	width: 100%;
-}
-
-#customers td, #customers th {
-	border: 1px solid #ddd;
-	padding: 8px;
-}
-
-#customers tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-#customers tr:hover {
-	background-color: #ddd;
-}
-
-#customers th {
-	padding-top: 12px;
-	padding-bottom: 12px;
-	text-align: left;
-	background-color: #4CAF50;
-	color: #070101;
+h1 {
+	text-align: center;
+	color: green;
 }
 </style>
 
@@ -83,19 +45,9 @@ th, td {
 			</ul>
 		</div>
 	</nav>
-
 	
-	<center>
-		<h2>
-			<font Color="red" size="8px" face="arial">VIEWING SPORTS 
-		</h2>
-	</center>
-	</font>
-	
-
-	<center>
-		<table id="customers">
-			</center>
+	<h1>Viewing All Sports</h1>
+		<table id="sports" align="center">
 			<tr>
 				<th>SID</th>
 				<th>SportsName</th>

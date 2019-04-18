@@ -17,7 +17,7 @@ public class SharedDaoImpl implements SharedDao {
 
 	@Override
 	public List<Sports> getAllSports() {
-		String viewQuery = "SELECT * FROM SPORTSDATA";
+		String viewQuery = "SELECT * FROM SPORTSDATA ORDER BY SCLUB";
 		List<Sports> sportsList = new ArrayList<>();
 		try {
 			con = dbutil.getConnection();

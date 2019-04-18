@@ -37,7 +37,7 @@ public class BookingDaoImpl extends AdminDaoImpl implements BookingDao {
 
 	@Override
 	public boolean bookSport(BookingSports bs) {
-		String addBookingQuery = "INSERT INTO BOOKING VALUES (?,?,?,?,?,?)";
+		String addBookingQuery = "INSERT INTO BOOKING VALUES (?,?,?,?,?,?,?)";
 		try {
 			con = dbutil.getConnection();
 			pst = con.prepareStatement(addBookingQuery);
@@ -47,6 +47,7 @@ public class BookingDaoImpl extends AdminDaoImpl implements BookingDao {
 			pst.setString(4, bs.getBookingdate());
 			pst.setString(5, bs.getBookingtime());
 			pst.setInt(6, bs.getBookingprice());
+			pst.setInt(7, bs.getScid());
 			int i = pst.executeUpdate();
 			if (i == 1) {
 				return true;

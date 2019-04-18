@@ -72,7 +72,7 @@ public class AdminServices extends HttpServlet {
 		} else if (url.endsWith("sportsclubs")) {
 			List<SportsClubs> sportsClubList = sharedDao.getAllSportsClubs();
 			request.setAttribute("sportsclubs", sportsClubList);
-			RequestDispatcher rd = request.getRequestDispatcher("addsportsclub.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("sportsclubs.jsp");
 			rd.forward(request, response);
 
 		} else if (url.endsWith("addnewsportclub")) {

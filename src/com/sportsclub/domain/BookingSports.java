@@ -16,4 +16,5 @@ public class BookingSports {
 	private String bookingtime;
 	private String bookingid;
 	private int bookingprice;
+	private int scid;
 }

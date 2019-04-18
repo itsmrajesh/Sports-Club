@@ -21,10 +21,14 @@
 h1 {
 	text-align: center;
 	color: green;
+	/* padding-right: 40px;
+	padding-left: 140px; */
 }
-body  {
-  background-image: url("images/bg2f.jpg");
-  background-color: #cccccc;
+
+body {
+	background-image: url("images/football.png");
+	background-color: #cccccc;
+	background-repeat: no-repeat;
 }
 </style>
 </head>
@@ -48,7 +52,7 @@ body  {
 			</ul>
 		</div>
 	</nav>
-
+	<br>
 	<h1>Available Sports Clubs</h1>
 	<table id="sports" align="center">
 		<tr>
@@ -64,7 +68,9 @@ body  {
 				<td>${club.scname}</td>
 				<td>${club.location}</td>
 				<td>${club.contactnumber}</td>
-				<td><a href="add?scid=${club.scid}"> <button>Add New Sport</button></a></td>
+				<td><a href="add?scid=${club.scid}">
+						<button>Add New Sport</button>
+				</a></td>
 			</tr>
 		</c:forEach>
 	</table>

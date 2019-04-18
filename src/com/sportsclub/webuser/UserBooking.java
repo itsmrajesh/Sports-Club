@@ -30,7 +30,7 @@ import com.sportsclub.shared_dao.SharedDaoImpl;
 public class UserBooking extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminDao adminDao = new AdminDaoImpl();
-	private BookingService bs = new BookingService();
+	private BookingService bookingservice = new BookingService();
 	private UserAccountDao sd = new UserAccountDaoImpl();
 	private SharedDaoImpl sharedDao = new SharedDaoImpl();
 	private BookingDao bookingDao = new BookingDaoImpl();
@@ -66,16 +66,23 @@ public class UserBooking extends HttpServlet {
 			rd.forward(request, response);
 
 		} else if (url.endsWith("dobooking")) {
-			String sid=session.getAttribute("sid").toString();
+			int scid = Integer.parseInt(session.getAttribute("scid").toString());
+			String sid = session.getAttribute("sid").toString();
 			String date = request.getParameter("date");
 			String startTime = request.getParameter("time");
+			if(bookingservice.doBooking(sid, uid, date, startTime, scid)) {
+				response.sendRedirect("bookingsuccess.html");
+			}
+			else {
+				
+			}
 		}
 
 		else if (url.endsWith("viewbooking")) {
 			uid = session.getAttribute("uid").toString();
 			List<BookingSports> bookinglist = bookingDao.getUserBooking(uid);
 			request.setAttribute("booking", bookinglist);
-			rd = request.getRequestDispatcher("vewbooking.jsp");
+			rd = request.getRequestDispatcher("viewbooking.jsp");
 			rd.forward(request, response);
 		}
 	}

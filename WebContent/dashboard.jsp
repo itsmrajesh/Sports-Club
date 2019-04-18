@@ -18,6 +18,10 @@
 <link rel="stylesheet" type="text/css" href="css/table.css" />
 
 <style>
+h1 {
+	text-align: center;
+	color: white;
+}
 .container {
 	overflow: hidden
 }
@@ -96,8 +100,8 @@
 	<!-- Nav Bar Ended -->
 	<!-- Main body Starts -->
 	
-	<div align="center">
-		<font Color="white" size="8px" face="arial"><h1 color:"white">
+	
+		<h1 color:"white">
 			<%
 				out.println("Welcome " + session.getAttribute("name").toString().toUpperCase());
 			%>
@@ -105,8 +109,9 @@
 			<%
 				out.println("ID \t:- " + session.getAttribute("uid"));
 			%>
-		</h1></font>
-	</div> <br><br>
+		</h1>
+	 <br><br>
+	<h1>Sports Clubs</h1>
 <table id="sports" align="center">
 		<tr>
 			<tr>

@@ -11,11 +11,11 @@ public class BookingService {
 	private AdminDaoImpl adminDao = new AdminDaoImpl();
 	private BookingDao bookingDao = new BookingDaoImpl();
 
-	public boolean doBooking(String sid, String uid, String date, String time) {
+	public boolean doBooking(String sid, String uid, String date, String time,int scid) {
 		String bookingID = bid.getBookingID();
 		int price = adminDao.getSportPrice(sid);
 		BookingSports bs = BookingSports.builder().bookingid(bookingID).sid(sid).userid(uid).bookingdate(date)
-				.bookingtime(time).bookingprice(price).build();
+				.bookingtime(time).bookingprice(price).scid(scid).build();
 		return bookingDao.bookSport(bs);
 	}
 
