@@ -26,7 +26,7 @@ public class UserSession {
 	public String getUserID() {
 		String userID = null;
 		for(Profile pro:userList) {
-			userID=pro.getUserId();
+			userID=pro.getUserid();
 		}
 		return userID;
 	}

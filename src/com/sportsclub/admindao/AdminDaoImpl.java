@@ -82,7 +82,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public boolean addSportsClub(String scname,String location,String contactNumber) {
+	public boolean addSportsClub(String scname, String location, String contactNumber) {
 		String insertSportsClubQuery = "INSERT INTO SPORTSCLUBS (SCNAME,LOCATION,CONTACTNUMBER) VALUES (?,?,?)";
 		try {
 			con = dbutil.getConnection();
@@ -99,6 +99,25 @@ public class AdminDaoImpl implements AdminDao {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public List<Sports> getSports(int scid) {
+		String getSport = "SELECT SNAME,SPRICE,PLAYERS FROM SPORTSDATA WHERE SCID=?";
+		List<Sports> sportslist = new ArrayList<>();
+		try {
+			con = dbutil.getConnection();
+			pst=con.prepareStatement(getSport);
+			pst.setInt(1, scid);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				sportslist.add(
+						Sports.builder().sname(rs.getString(1)).sprice(rs.getInt(2)).players(rs.getInt(3)).build());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return sportslist;
 	}
 
 }

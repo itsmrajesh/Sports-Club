@@ -27,6 +27,7 @@ h1 {
 			</div>
 			<ul class="nav navbar-nav">
 				<li><a href="admin.html">Home</a></li>
+				<li><a href="sportsclubs">Back</a></li>
 			</ul>
 		</div>
 	</nav>

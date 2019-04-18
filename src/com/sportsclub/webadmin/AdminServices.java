@@ -25,6 +25,7 @@ public class AdminServices extends HttpServlet {
 	private AdminDao adminDao = new AdminDaoImpl();
 	private SharedDaoImpl sharedDao = new SharedDaoImpl();
 	private SportsIDGenerator sid = new SportsIDGenerator();
+	private Validations validations = new Validations();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -33,7 +34,7 @@ public class AdminServices extends HttpServlet {
 		System.out.println("url is " + url);
 		if (url.endsWith("addnewsport")) {
 			String sId = sid.getSportID(); // Auto generated ID
-			String sName = request.getParameter("sname");
+			String sName = request.getParameter("sname").toUpperCase();
 			HttpSession hs = request.getSession();
 			String scID = hs.getAttribute("scid").toString();
 			int scid = Integer.parseInt(scID);
@@ -41,19 +42,27 @@ public class AdminServices extends HttpServlet {
 			System.out.println("SCNAME is " + sClub);
 			int sPrice = Integer.parseInt(request.getParameter("sprice"));
 			int players = Integer.parseInt(request.getParameter("players"));
-			String sType = request.getParameter("stype");
-			Sports sports = Sports.builder().sid(sId).sname(sName).sclub(sClub).sprice(sPrice).players(players)
-					.stype(sType).scid(scid).build();
-			String status;
-			if (adminDao.addSport(sports)) {
-				request.setAttribute("status", "SUCCESS");
-				RequestDispatcher rd = request.getRequestDispatcher("sportaddedmessage.jsp");
-				rd.forward(request, response);
-			} else {
-				request.setAttribute("status", "FAILURE");
+			String sType = request.getParameter("stype").toUpperCase();
+			if (!validations.isSportPresent(scid, sName, players)) {
+				Sports sports = Sports.builder().sid(sId).sname(sName).sclub(sClub).sprice(sPrice).players(players)
+						.stype(sType).scid(scid).build();
+				if (adminDao.addSport(sports)) {
+					request.setAttribute("status", "SUCCESS");
+					RequestDispatcher rd = request.getRequestDispatcher("sportaddedmessage.jsp");
+					rd.forward(request, response);
+				} else {
+					request.setAttribute("status", "FAILURE");
+					RequestDispatcher rd = request.getRequestDispatcher("sportaddedmessage.jsp");
+					rd.forward(request, response);
+				}
+			}
+			else {
+				String message = "Its Seems that " + sName + " already Present in " + sClub + " Club DataBase \n Thank You... :-)";
+				request.setAttribute("status", message);
 				RequestDispatcher rd = request.getRequestDispatcher("sportaddedmessage.jsp");
 				rd.forward(request, response);
 			}
+			
 
 		} else if (url.endsWith("viewsports")) {
 			List<Sports> allSports = sharedDao.getAllSports();
@@ -67,8 +76,7 @@ public class AdminServices extends HttpServlet {
 			request.setAttribute("allSports", searchSports);
 			RequestDispatcher rd = request.getRequestDispatcher("viewsports.jsp");
 			rd.forward(request, response);
-			
-			
+
 		} else if (url.endsWith("sportsclubs")) {
 			List<SportsClubs> sportsClubList = sharedDao.getAllSportsClubs();
 			request.setAttribute("sportsclubs", sportsClubList);
@@ -78,8 +86,8 @@ public class AdminServices extends HttpServlet {
 		} else if (url.endsWith("addnewsportclub")) {
 			String scname = request.getParameter("scname");
 			String location = request.getParameter("location");
-			String contactNumber=request.getParameter("contactnumber");
-			if (adminDao.addSportsClub(scname,location,contactNumber)) {
+			String contactNumber = request.getParameter("contactnumber");
+			if (adminDao.addSportsClub(scname, location, contactNumber)) {
 				response.sendRedirect("sportsclubs");
 			} else {
 				response.getWriter().append("status : failure");

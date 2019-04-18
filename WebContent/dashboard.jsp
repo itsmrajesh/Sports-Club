@@ -5,7 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>SportsClub</title>
+<title><%
+		out.println(session.getAttribute("name").toString().toUpperCase() + " Dashboard");
+	%></title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -70,6 +72,19 @@ h1 {
 .dropdown:hover .dropbtn {
 	background-color: #060706;
 }
+.imgbg1{
+  background-image: url("images/cricket.png");
+ background-position:left bottom,right top;
+	background-repeat: no-repeat;
+	background-size: 350px, 350px;
+}
+.imgbg2{
+  background-image: url("images/trophy.png");
+ background-position: right bottom, left top;
+	background-repeat: no-repeat;
+	background-size: 350px, 350px;
+}
+
 </style>
 
 </head>
@@ -81,6 +96,7 @@ h1 {
 			</div>
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#">Home</a></li>
+				<li><a href="viewprofile">Profile</a></li>
 				<div class="dropdown">
 					<button class="dropbtn">MY Account</button>
 					<div class="dropdown-content">
@@ -100,7 +116,8 @@ h1 {
 	<!-- Nav Bar Ended -->
 	<!-- Main body Starts -->
 	
-	
+	<div class="imgbg1">
+	<div class="imgbg2">
 		<h1 color:"white">
 			<%
 				out.println("Welcome " + session.getAttribute("name").toString().toUpperCase());
@@ -133,7 +150,8 @@ h1 {
 			</tr>
 		</c:forEach>
 	</table>
-
+</div>
+</div>
 </body>
 
 </html>

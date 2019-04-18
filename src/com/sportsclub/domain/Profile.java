@@ -16,7 +16,7 @@ public class Profile {
 	private String dob;
 	private long mobile;
 	private String address;
-	private String userId;
+	private String userid;
 	private String newpassword;
 
 }

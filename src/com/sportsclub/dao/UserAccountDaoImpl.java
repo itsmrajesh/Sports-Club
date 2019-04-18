@@ -42,7 +42,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
 		try {
 			con = dbutil.getConnection();
 			pstmt = con.prepareStatement(addUser);
-			pstmt.setString(1, p.getUserId());
+			pstmt.setString(1, p.getUserid());
 			pstmt.setString(2, p.getName());
 			pstmt.setString(3, p.getEmail());
 			pstmt.setString(4, p.getDob());
@@ -78,7 +78,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
 				String email_1 = rs.getString("email");
 				long mobile = rs.getLong("mobile");
 				String address = rs.getString("address");
-				Profile profileLogin = Profile.builder().userId(userId).name(name).email(email_1).address(address)
+				Profile profileLogin = Profile.builder().userid(userId).name(name).email(email_1).address(address)
 						.mobile(mobile).build();
 				userSession.logedUser(profileLogin);
 				return true;
@@ -165,7 +165,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
 
 	@Override
 	public Profile getUserDetails(String uid) {
-		String getUserQuery = "SELECT UID,NAME,EMAIL,ADDRESS,MOBILE FROM SIGNUPDATA WHERE UID=?";
+		String getUserQuery = "SELECT UID,NAME,EMAIL,DOB,MOBILE,ADDRESS FROM SIGNUPDATA WHERE UID=?";
 		Profile profile = null;
 		try {
 			con = dbutil.getConnection();
@@ -176,9 +176,10 @@ public class UserAccountDaoImpl implements UserAccountDao {
 				String userId = rs.getString("uid");
 				String name = rs.getString("name");
 				String email = rs.getString("email");
+				String dob=rs.getString("dob");
 				long mobile = rs.getLong("mobile");
 				String address = rs.getString("address");
-				profile = Profile.builder().userId(userId).name(name).email(email).address(address).mobile(mobile)
+				profile = Profile.builder().userid(userId).name(name).email(email).address(address).mobile(mobile).dob(dob)
 						.build();
 			}
 		} catch (SQLException e) {

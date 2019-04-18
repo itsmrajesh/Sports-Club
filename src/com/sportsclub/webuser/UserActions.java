@@ -1,6 +1,7 @@
 package com.sportsclub.webuser;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -27,13 +28,13 @@ import com.sportsclub.usersession.UserSession;
 /**
  * Servlet implementation class UserActions
  */
-@WebServlet(urlPatterns = { "/signup", "/login", "/logout", "/changepwd", "/changeemail", "/changephone",
-		"/dashboard" })
+@WebServlet(urlPatterns = { "/signup", "/login", "/logout", "/changepwd", "/changeemail", "/changephone", "/dashboard",
+		"/viewprofile" })
 public class UserActions extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MemberIDGenerator idgenerator = new MemberIDGenerator();
 	private SportsClubService sportsClubService = new SportsClubServiceImpl();
-	private UserAccountDao sportsdao = new UserAccountDaoImpl();
+	private UserAccountDao userdao = new UserAccountDaoImpl();
 	private AdminDao adminDao = new AdminDaoImpl();
 	private SharedDaoImpl sharedDao = new SharedDaoImpl();
 
@@ -50,7 +51,7 @@ public class UserActions extends HttpServlet {
 			String address = request.getParameter("address");
 			String userId = idgenerator.getID(); // System Generated
 			Profile profile = Profile.builder().name(name).email(email).password(password).dob(dob).mobile(mobile)
-					.address(address).userId(userId).build();
+					.address(address).userid(userId).build();
 			boolean status = sportsClubService.addUser(profile);
 			if (status) {
 				response.sendRedirect("signupsuccess.html");
@@ -66,9 +67,9 @@ public class UserActions extends HttpServlet {
 				response.sendRedirect("admin.html");
 			} else if (sportsClubService.validateUser(email, password)) {
 				HttpSession hs = request.getSession();
-				String uid = sportsdao.getUserID(email);
+				String uid = userdao.getUserID(email);
 				hs.setAttribute("uid", uid);
-				Profile p = sportsdao.getUserDetails(uid);
+				Profile p = userdao.getUserDetails(uid);
 				hs.setAttribute("name", p.getName());
 				response.sendRedirect("dashboard");
 			} else {
@@ -81,7 +82,7 @@ public class UserActions extends HttpServlet {
 			String oldPassword = request.getParameter("oldpwd");
 			boolean status = false;
 			if (newPassword.equals(newcPassword)) {
-				status = sportsdao.changePassword(uid, newPassword, oldPassword);
+				status = userdao.changePassword(uid, newPassword, oldPassword);
 			}
 			if (status) {
 				request.setAttribute("status", "SUCCESS");
@@ -96,7 +97,7 @@ public class UserActions extends HttpServlet {
 		} else if (url.endsWith("changeemail")) {
 			String uid = (String) session.getAttribute("uid");
 			String newEmail = request.getParameter("newemail");
-			if (sportsdao.updateEmail(uid, newEmail)) {
+			if (userdao.updateEmail(uid, newEmail)) {
 				request.setAttribute("status", "SUCCESS");
 				RequestDispatcher rd = request.getRequestDispatcher("status.jsp");
 				rd.forward(request, response);
@@ -108,7 +109,7 @@ public class UserActions extends HttpServlet {
 		} else if (url.endsWith("changephone")) {
 			String uid = (String) session.getAttribute("uid");
 			long newNumber = Long.parseLong(request.getParameter("newphone"));
-			if (sportsdao.updatePhone(uid, newNumber)) {
+			if (userdao.updatePhone(uid, newNumber)) {
 				request.setAttribute("status", "SUCCESS");
 				RequestDispatcher rd = request.getRequestDispatcher("status.jsp");
 				rd.forward(request, response);
@@ -123,6 +124,15 @@ public class UserActions extends HttpServlet {
 			request.setAttribute("allSportsclubs", allSportsClubs);
 			RequestDispatcher rd = request.getRequestDispatcher("dashboard.jsp");
 			rd.forward(request, response);
+		} else if (url.endsWith("viewprofile")) {
+			String uid = session.getAttribute("uid").toString();
+			Profile profile = userdao.getUserDetails(uid);
+			List<Profile> list = new ArrayList<>();
+			list.add(profile);
+			request.setAttribute("userdetails", list);
+			RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
+			rd.forward(request, response);
+
 		} else if (url.endsWith("logout")) {
 			HttpSession h = request.getSession();
 			h.removeAttribute("userid");
