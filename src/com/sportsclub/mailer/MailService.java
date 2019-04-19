@@ -12,7 +12,7 @@ public class MailService {
 		Mail mail = adminDao.getMailAuthentication();
 		int msgid = (int) (Math.random() * 1234 + 599); //Random Message ID
 		if (mail != null) {
-			return Mailer.sendMail(mail, recipientmailaddress, message, mailSubject + (" Mail id :- " + msgid));
+			return Mailer.sendMail(mail, recipientmailaddress, message, mailSubject + (" #" + msgid));
 		} else {
 			return false;
 		}

@@ -38,8 +38,26 @@ public class UserActions extends HttpServlet implements Runnable {
 	private UserAccountDao userdao = new UserAccountDaoImpl();
 	private AdminDao adminDao = new AdminDaoImpl();
 	private SharedDaoImpl sharedDao = new SharedDaoImpl();
-	
+
 	private String email;
+	private String message;
+	private String subject;
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
 
 	public String getEmail() {
 		return email;
@@ -53,11 +71,12 @@ public class UserActions extends HttpServlet implements Runnable {
 			throws ServletException, IOException {
 		UserActions useractions = new UserActions();
 		HttpSession session = request.getSession();
+		Thread thread = new Thread(useractions);
 		String url = request.getRequestURI();
 		if (url.endsWith("signup")) {
 			String name = request.getParameter("name").toUpperCase();
 			String email = request.getParameter("email");
-			setEmail(email);
+			session.setAttribute("email", email);
 			String password = request.getParameter("password");
 			String dob = request.getParameter("dob");
 			long mobile = Long.parseLong(request.getParameter("mobile"));
@@ -67,7 +86,11 @@ public class UserActions extends HttpServlet implements Runnable {
 					.address(address).userid(userId).build();
 			boolean status = sportsClubService.addUser(profile);
 			if (status) {
-				Thread thread = new Thread(useractions);
+				useractions.setEmail(email);
+				String message="Welcome to Sports Club System! <br> Book and Play Away. Thanks For Signing Up ";
+				useractions.setMessage(message);
+				String subject="SignUp Successfull ";
+				useractions.setSubject(subject);
 				thread.start();
 				response.sendRedirect("signupsuccess.html");
 			} else {
@@ -84,6 +107,7 @@ public class UserActions extends HttpServlet implements Runnable {
 				HttpSession hs = request.getSession();
 				String uid = userdao.getUserID(email);
 				hs.setAttribute("uid", uid);
+				hs.setAttribute("email", email);
 				Profile p = userdao.getUserDetails(uid);
 				hs.setAttribute("name", p.getName());
 				response.sendRedirect("dashboard");
@@ -100,6 +124,13 @@ public class UserActions extends HttpServlet implements Runnable {
 				status = userdao.changePassword(uid, newPassword, oldPassword);
 			}
 			if (status) {
+				String email=session.getAttribute("email").toString();
+				useractions.setEmail(email);
+				String message="<h2>Hi User</h2>,<br> <p>The Password For Sports Club Account has recently Changed</p>";
+				useractions.setMessage(message);
+				String subject="Your Password Changed ";
+				useractions.setSubject(subject);
+				thread.start();
 				request.setAttribute("status", "SUCCESS");
 				RequestDispatcher rd = request.getRequestDispatcher("status.jsp");
 				rd.forward(request, response);
@@ -110,7 +141,7 @@ public class UserActions extends HttpServlet implements Runnable {
 			}
 
 		} else if (url.endsWith("changeemail")) {
-			String uid = (String) session.getAttribute("uid");
+			String uid = session.getAttribute("uid").toString();
 			String newEmail = request.getParameter("newemail");
 			if (userdao.updateEmail(uid, newEmail)) {
 				request.setAttribute("status", "SUCCESS");
@@ -164,8 +195,8 @@ public class UserActions extends HttpServlet implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println("Your email is:-"+getEmail());
-		MailService.sendMailService(getEmail(), "welcome to Sports Club :-)", "Signup SucessFull");
+		System.out.println("Your email is:-" + getEmail());
+		MailService.sendMailService(getEmail(), getMessage(), getSubject());
 	}
 
 }

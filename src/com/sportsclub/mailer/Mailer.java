@@ -18,8 +18,8 @@ public class Mailer {
 			String to = recipientmailaddress;
 			String user = mail.getHostmailaddress();
 			String subject = mailSubject;
-			String BODY = String.join(System.getProperty("line.separator"), "<h3>Hello welcome to sports club</h3>",
-					"Your mail ID is :" + recipientmailaddress + " <br> " + "Message :-" + message);
+			String BODY = String.join(System.getProperty("line.separator"), "<h3>Sports club System</h3>",
+					 " <br> " + "Message :-" +"<p>"+ message+" </p>");
 			String messageText = "Hyyy boss u have a message!!!!!!!!!! ";
 			System.out.println("Sending the mail please wait --------------------");
 			
@@ -52,6 +52,7 @@ public class Mailer {
 			System.out.println("Message sent successfully!!!!!!!!!!!!");
 			return true;
 		} catch (Exception ex) {
+			System.out.println("Error occured while sending mail");
 			System.out.println(ex);
 			return false;
 		}
