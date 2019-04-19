@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sportsclub.dbutil.DBUtil;
+import com.sportsclub.domain.Mail;
 import com.sportsclub.domain.Sports;
 import com.sportsclub.domain.SportsClubs;
 
@@ -103,11 +104,11 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public List<Sports> getSports(int scid) {
-		String getSport = "SELECT SNAME,SPRICE,PLAYERS FROM SPORTSDATA WHERE SCID=?";
+		String getSportQuery = "SELECT SNAME,SPRICE,PLAYERS FROM SPORTSDATA WHERE SCID=?";
 		List<Sports> sportslist = new ArrayList<>();
 		try {
 			con = dbutil.getConnection();
-			pst=con.prepareStatement(getSport);
+			pst = con.prepareStatement(getSportQuery);
 			pst.setInt(1, scid);
 			rs = pst.executeQuery();
 			while (rs.next()) {
@@ -118,6 +119,23 @@ public class AdminDaoImpl implements AdminDao {
 			e.printStackTrace();
 		}
 		return sportslist;
+	}
+
+	@Override
+	public Mail getMailAuthentication() {
+		String selectMailDetailsQuery = "SELECT * FROM MAIL";
+		Mail mail = null;
+		try {
+			con = dbutil.getConnection();
+			st = con.createStatement();
+			rs = st.executeQuery(selectMailDetailsQuery);
+			while (rs.next()) {
+				mail = Mail.builder().hostmailaddress(rs.getString(1)).hostpassword(rs.getString(2)).build();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return mail;
 	}
 
 }

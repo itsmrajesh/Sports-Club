@@ -14,3 +14,4 @@ create table signupdata (uid varchar(50) primary key,name varchar(200) not null,
 
 create table booking (bid varchar(50),sid varchar(50),uid varchar(50),bookingdate varchar(50),bookingtime varchar(50),price int(10),scid int not null,foreign key(sid) references sportsdata(sid),foreign key(uid) references signupdata(uid),foreign key(scid) references sportsclubs(scid));
 
+create table mail(hostemail varchar(250) primary key,password varchar(250));

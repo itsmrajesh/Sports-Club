@@ -2,6 +2,7 @@ package com.sportsclub.admindao;
 
 import java.util.List;
 
+import com.sportsclub.domain.Mail;
 import com.sportsclub.domain.Sports;
 import com.sportsclub.domain.SportsClubs;
 
@@ -15,4 +16,6 @@ public interface AdminDao {
 	boolean addSportsClub(String scname,String loaction,String contactNumber);
 	
 	List<Sports> getSports(int scid);
+	
+	Mail getMailAuthentication();
 }

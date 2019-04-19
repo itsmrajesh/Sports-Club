@@ -20,6 +20,7 @@ import com.sportsclub.domain.Profile;
 import com.sportsclub.domain.Sports;
 import com.sportsclub.domain.SportsClubs;
 import com.sportsclub.idservice.MemberIDGenerator;
+import com.sportsclub.mailer.MailService;
 import com.sportsclub.service.SportsClubService;
 import com.sportsclub.service.SportsClubServiceImpl;
 import com.sportsclub.shared_dao.SharedDaoImpl;
@@ -30,21 +31,33 @@ import com.sportsclub.usersession.UserSession;
  */
 @WebServlet(urlPatterns = { "/signup", "/login", "/logout", "/changepwd", "/changeemail", "/changephone", "/dashboard",
 		"/viewprofile" })
-public class UserActions extends HttpServlet {
+public class UserActions extends HttpServlet implements Runnable {
 	private static final long serialVersionUID = 1L;
 	private MemberIDGenerator idgenerator = new MemberIDGenerator();
 	private SportsClubService sportsClubService = new SportsClubServiceImpl();
 	private UserAccountDao userdao = new UserAccountDaoImpl();
 	private AdminDao adminDao = new AdminDaoImpl();
 	private SharedDaoImpl sharedDao = new SharedDaoImpl();
+	
+	private String email;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		UserActions useractions = new UserActions();
 		HttpSession session = request.getSession();
 		String url = request.getRequestURI();
 		if (url.endsWith("signup")) {
 			String name = request.getParameter("name").toUpperCase();
 			String email = request.getParameter("email");
+			setEmail(email);
 			String password = request.getParameter("password");
 			String dob = request.getParameter("dob");
 			long mobile = Long.parseLong(request.getParameter("mobile"));
@@ -54,6 +67,8 @@ public class UserActions extends HttpServlet {
 					.address(address).userid(userId).build();
 			boolean status = sportsClubService.addUser(profile);
 			if (status) {
+				Thread thread = new Thread(useractions);
+				thread.start();
 				response.sendRedirect("signupsuccess.html");
 			} else {
 				response.sendRedirect("login.html#toregister");
@@ -145,6 +160,12 @@ public class UserActions extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
+	}
+
+	@Override
+	public void run() {
+		System.out.println("Your email is:-"+getEmail());
+		MailService.sendMailService(getEmail(), "welcome to Sports Club :-)", "Signup SucessFull");
 	}
 
 }
