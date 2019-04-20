@@ -87,9 +87,9 @@ public class UserActions extends HttpServlet implements Runnable {
 			boolean status = sportsClubService.addUser(profile);
 			if (status) {
 				useractions.setEmail(email);
-				String message="Welcome to Sports Club System! <br> Book and Play Away. Thanks For Signing Up ";
+				String message = "Welcome to Sports Club System! <br> Book and Play Away. Thanks For Signing Up ";
 				useractions.setMessage(message);
-				String subject="SignUp Successfull ";
+				String subject = "SignUp Successfull ";
 				useractions.setSubject(subject);
 				thread.start();
 				response.sendRedirect("signupsuccess.html");
@@ -124,11 +124,11 @@ public class UserActions extends HttpServlet implements Runnable {
 				status = userdao.changePassword(uid, newPassword, oldPassword);
 			}
 			if (status) {
-				String email=session.getAttribute("email").toString();
+				String email = session.getAttribute("email").toString();
 				useractions.setEmail(email);
-				String message="<h2>Hi User</h2>,<br> <p>The Password For Sports Club Account has recently Changed</p>";
+				String message = "<h2>Hi User,</h2><p>The Password For Sports Club Account has recently Changed</p>";
 				useractions.setMessage(message);
-				String subject="Your Password Changed ";
+				String subject = "Your Password Changed ";
 				useractions.setSubject(subject);
 				thread.start();
 				request.setAttribute("status", "SUCCESS");
@@ -143,10 +143,27 @@ public class UserActions extends HttpServlet implements Runnable {
 		} else if (url.endsWith("changeemail")) {
 			String uid = session.getAttribute("uid").toString();
 			String newEmail = request.getParameter("newemail");
-			if (userdao.updateEmail(uid, newEmail)) {
-				request.setAttribute("status", "SUCCESS");
-				RequestDispatcher rd = request.getRequestDispatcher("status.jsp");
-				rd.forward(request, response);
+			String email = session.getAttribute("email").toString();
+			if (!newEmail.equalsIgnoreCase(email)) {
+				if (userdao.updateEmail(uid, newEmail)) {
+					useractions.setEmail(email);
+					session.setAttribute("email", newEmail);
+					String message = "<h2>Hi User,</h2><p>The Email For Sports Club Account has recently Changed from "
+							+ email + " to new Email " + newEmail + "</p>";
+					useractions.setMessage(message);
+					String subject = "Your Email ID Changed ";
+					useractions.setSubject(subject);
+					thread.start();
+					request.setAttribute("status", "SUCCESS");
+					RequestDispatcher rd = request.getRequestDispatcher("status.jsp");
+					rd.forward(request, response);
+					/*
+					 * message="<h2>Hello User,</h2> <p>This is Your New Email Conformation ie :- "
+					 * +newEmail+"</p>"; email = session.getAttribute("email").toString();
+					 * useractions.setMessage(message);Update Message for new Email
+					 * useractions.setEmail(email); //Update New Mail ID thread.start();
+					 */
+				}
 			} else {
 				request.setAttribute("status", "FAILURE");
 				RequestDispatcher rd = request.getRequestDispatcher("status.jsp");
@@ -156,6 +173,13 @@ public class UserActions extends HttpServlet implements Runnable {
 			String uid = (String) session.getAttribute("uid");
 			long newNumber = Long.parseLong(request.getParameter("newphone"));
 			if (userdao.updatePhone(uid, newNumber)) {
+				String email = session.getAttribute("email").toString();
+				useractions.setEmail(email);
+				String message = "<h2>Hi User,</h2><p>Your Contact For Sports Club Account has recently Changed</p>";
+				useractions.setMessage(message);
+				String subject = "Your Contact Number Changed ";
+				useractions.setSubject(subject);
+				thread.start();
 				request.setAttribute("status", "SUCCESS");
 				RequestDispatcher rd = request.getRequestDispatcher("status.jsp");
 				rd.forward(request, response);
@@ -180,9 +204,8 @@ public class UserActions extends HttpServlet implements Runnable {
 			rd.forward(request, response);
 
 		} else if (url.endsWith("logout")) {
-			HttpSession h = request.getSession();
-			h.removeAttribute("userid");
-			// h.invalidate();
+			session.removeAttribute("uid");
+			// session.invalidate();
 			response.sendRedirect("home.html");
 		}
 
