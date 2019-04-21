@@ -49,6 +49,7 @@ body {
 			</div>
 			<ul class="nav navbar-nav">
 				<li><a href="dashboard">Home</a></li>
+				<li><a href="viewprofile">Back</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="logout">Logout &nbsp;<span

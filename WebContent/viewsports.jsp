@@ -21,6 +21,10 @@ h1 {
 	text-align: center;
 	color: green;
 }
+
+body {
+	background-color: #cccccc;
+}
 </style>
 
 </head>
@@ -45,29 +49,29 @@ h1 {
 			</ul>
 		</div>
 	</nav>
-	
-	<h1>Viewing All Sports</h1>
-		<table id="sports" align="center">
-			<tr>
-				<th>SID</th>
-				<th>SportsName</th>
-				<th>Sports Club</th>
-				<th>Fees</th>
-				<th>No.of.Players</th>
-				<th>Sport Type</th>
-			</tr>
-			<c:forEach items="${allSports}" var="allSport">
-				<tr>
-					<td>${allSport.sid}</td>
-					<td>${allSport.sname}</td>
-					<td>${allSport.sclub}</td>
-					<td>${allSport.sprice}</td>
-					<td>${allSport.players}</td>
-					<td>${allSport.stype}</td>
 
-				</tr>
-			</c:forEach>
-		</table>
+	<h1>Viewing All Sports</h1>
+	<table id="sports" align="center">
+		<tr>
+			<th>SID</th>
+			<th>SportsName</th>
+			<th>Sports Club</th>
+			<th>Fees</th>
+			<th>No.of.Players</th>
+			<th>Sport Type</th>
+		</tr>
+		<c:forEach items="${allSports}" var="allSport">
+			<tr>
+				<td>${allSport.sid}</td>
+				<td>${allSport.sname}</td>
+				<td>${allSport.sclub}</td>
+				<td>${allSport.sprice}</td>
+				<td>${allSport.players}</td>
+				<td>${allSport.stype}</td>
+
+			</tr>
+		</c:forEach>
+	</table>
 </body>
 
 </html>
