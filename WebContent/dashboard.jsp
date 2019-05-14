@@ -96,7 +96,7 @@ if(session.getAttribute("uid")==null){
 			<th>CLUB Name</th>
 			<th>Location</th>
 			<th>Contact Number</th>
-			<th>Book Sport</th>
+			<th>View</th>
 		</tr>
 		</tr>
 		<c:forEach items="${allSportsclubs}" var="club">
@@ -105,7 +105,7 @@ if(session.getAttribute("uid")==null){
 				<td>${club.scname}</td>
 				<td>${club.location}</td>
 				<td>${club.contactnumber}</td>
-				<td><a href="viewsportsforbooking?scid=${club.scid}"><button>Book Now</button></a>
+				<td><a href="viewsportsforbooking?scid=${club.scid}"><button>View Sports</button></a>
 					</td>
 			</tr>
 		</c:forEach>
