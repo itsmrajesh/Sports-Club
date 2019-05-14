@@ -42,6 +42,19 @@ h1 {
 
 </head>
 <body background="main.jpg">
+
+<%
+response.setHeader("Cache-Control", "no-cache , no-store , must-revalidate");
+
+response.setHeader("Progma", "no-cache");
+
+response.setHeader("Expries", "0");
+
+if(session.getAttribute("uid")==null){
+	response.sendRedirect("timeout.jsp");
+}
+
+%>
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">

@@ -32,7 +32,7 @@
                     <c:forEach items="${bookingmap}" var="entry">
                         [ '${entry.key}', ${entry.value} ],
                     </c:forEach>
-                        ['Total',${sum}]
+                        ['Total',0]
                     ]); 
         
         var options = {
@@ -45,14 +45,14 @@
         };
 
         // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
         chart.draw(data, options);
     }
 </script>
 </head>
 <body>
-	<div style="width: 600px;">
-		<div id="chart_div"></div>
+	<div style="width: 750px">
+		<div style="width: 750px"id="chart_div"></div>
 	</div>
 	
 	<a href="admin.html">
