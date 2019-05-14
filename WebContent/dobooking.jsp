@@ -63,7 +63,7 @@ body {
 				<td>${sport.sid}</td>
 				<td>${sport.sname}</td>
 				<td>${sport.sclub}</td>
-				<td>${sport.sprice}</td>
+				<td>Rs:${sport.sprice}</td>
 				<td>${sport.players}</td>
 				<td>${sport.stype}</td>
 

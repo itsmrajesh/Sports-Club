@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.sportsclub.dbutil.DBUtil;
 import com.sportsclub.domain.Mail;
@@ -136,6 +138,26 @@ public class AdminDaoImpl implements AdminDao {
 			e.printStackTrace();
 		}
 		return mail;
+	}
+
+	@Override
+	public Map<String, Integer> getBookings() {
+		Map<String, Integer> map = new HashMap<>();
+		String getBookings = "select e.scname,count(s.scid) from sportsclubs e inner join booking s on e.scid=s.scid group by s.scid";
+				//"select scid,count(scid) as bookingcount from booking group by scid";
+		try {
+			con = dbutil.getConnection();
+			st = con.createStatement();
+			rs = st.executeQuery(getBookings);
+			while (rs.next()) {
+				String scname = rs.getString(1);
+				int bookingCount = rs.getInt(2);
+				map.put(scname, bookingCount);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return map;
 	}
 
 }

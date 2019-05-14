@@ -1,7 +1,11 @@
 package com.sportsclub.webadmin;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,7 +23,7 @@ import com.sportsclub.idservice.SportsIDGenerator;
 import com.sportsclub.shared_dao.SharedDaoImpl;
 
 @WebServlet(urlPatterns = { "/addnewsport", "/viewsports", "/searchsports", "/addresults", "/sportsclubs",
-		"/addnewsportclub", "/add" })
+		"/addnewsportclub", "/add", "/showbookinggraph" })
 public class AdminServices extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminDao adminDao = new AdminDaoImpl();
@@ -55,14 +59,13 @@ public class AdminServices extends HttpServlet {
 					RequestDispatcher rd = request.getRequestDispatcher("sportaddedmessage.jsp");
 					rd.forward(request, response);
 				}
-			}
-			else {
-				String message = "Its Seems that " + sName + " already Present in " + sClub + " Club DataBase \n Thank You... :-)";
+			} else {
+				String message = "Its Seems that " + sName + " already Present in " + sClub
+						+ " Club DataBase \n Thank You... :-)";
 				request.setAttribute("status", message);
 				RequestDispatcher rd = request.getRequestDispatcher("sportaddedmessage.jsp");
 				rd.forward(request, response);
 			}
-			
 
 		} else if (url.endsWith("viewsports")) {
 			List<Sports> allSports = sharedDao.getAllSports();
@@ -97,6 +100,20 @@ public class AdminServices extends HttpServlet {
 			String scid = request.getParameter("scid");
 			hs.setAttribute("scid", scid);
 			response.sendRedirect("addsports.html");
+		}
+
+		else if (url.endsWith("showbookinggraph")) {
+			Map<String, Integer> map = adminDao.getBookings();
+			int totalCount = 0;
+			Set<Entry<String, Integer>> mapentry = map.entrySet();
+			for (Entry<String, Integer> entry : mapentry) {
+				totalCount += entry.getValue();
+			}
+			HttpSession session = request.getSession();
+			session.setAttribute("sum", totalCount);
+			request.setAttribute("bookingmap", map);
+			RequestDispatcher rd = request.getRequestDispatcher("bookinggraph.jsp");
+			rd.forward(request, response);
 		}
 
 	}
