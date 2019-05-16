@@ -17,13 +17,14 @@ import javax.servlet.http.HttpSession;
 
 import com.sportsclub.admindao.AdminDao;
 import com.sportsclub.admindao.AdminDaoImpl;
+import com.sportsclub.domain.BookingSports;
 import com.sportsclub.domain.Sports;
 import com.sportsclub.domain.SportsClubs;
 import com.sportsclub.idservice.SportsIDGenerator;
 import com.sportsclub.shared_dao.SharedDaoImpl;
 
 @WebServlet(urlPatterns = { "/addnewsport", "/viewsports", "/searchsports", "/addresults", "/sportsclubs",
-		"/addnewsportclub", "/add", "/showbookinggraph" })
+		"/addnewsportclub", "/add", "/showbookinggraph", "/searchbookings", "/viewbookingclubwise" })
 public class AdminServices extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminDao adminDao = new AdminDaoImpl();
@@ -104,15 +105,27 @@ public class AdminServices extends HttpServlet {
 
 		else if (url.endsWith("showbookinggraph")) {
 			Map<String, Integer> map = adminDao.getBookings();
-			int totalCount = 0;
-			Set<Entry<String, Integer>> mapentry = map.entrySet();
-			for (Entry<String, Integer> entry : mapentry) {
-				totalCount += entry.getValue();
-			}
-			HttpSession session = request.getSession();
-			session.setAttribute("sum", totalCount);
+			/*
+			 * int totalCount = 0; Set<Entry<String, Integer>> mapentry = map.entrySet();
+			 * for (Entry<String, Integer> entry : mapentry) { totalCount +=
+			 * entry.getValue(); } HttpSession session = request.getSession();
+			 * session.setAttribute("sum", totalCount);
+			 */
 			request.setAttribute("bookingmap", map);
 			RequestDispatcher rd = request.getRequestDispatcher("bookinggraph.jsp");
+			rd.forward(request, response);
+		} else if (url.endsWith("searchbookings")) {
+			String bid = request.getParameter("bid");
+			List<BookingSports> searchList = adminDao.searchBookings(bid);
+			request.setAttribute("booking", searchList);
+			RequestDispatcher rd = request.getRequestDispatcher("viewbooking.jsp");
+			rd.forward(request, response);
+		}
+
+		else if (url.endsWith("viewbookingclubwise")) {
+			List<BookingSports> bookingList = adminDao.getUserBookingByClubWise();
+			request.setAttribute("booking", bookingList);
+			RequestDispatcher rd = request.getRequestDispatcher("viewbooking.jsp");
 			rd.forward(request, response);
 		}
 

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>SportsClub</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<style>
+body {
+	background-image: url("images/search.png");
+	background-color: #cccccc;
+	background-position:right 65px;
+	background-repeat: no-repeat;
+	background-size: 450px;
+}
+
+h1 {
+	text-align: center;
+	color: green;
+}
+</style>
+</head>
+
+
+
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Sports Club System</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="admin.html">Home</a></li>
+				<li class="active"><a href="admin.html">Back</a></li>
+
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="logout"><span
+						class="glyphicon glyphicon-sign-up"></span> Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+
+
+	<h1>Search Bookings</h1>
+
+	<!-- <form action="searchsports">
+		<div class="container">
+			<label for="sid"><b>Sports ID</b></label> <input type="text"
+				placeholder="Enter Sport ID" name="sid" required><br>
+			<button type="submit" class="registerbtn">Search</button>
+		</div>
+	</form> -->
+	<div class="container">
+		<form action="searchbookings" method="post">
+			<div class="input-group">
+				<label for="sname" class="mb-2 mr-sm-2">Sport ID:</label> <input
+					id="sname" type="text" class="form-control" name="bid"
+					placeholder="Enter Booking ID" required>
+			</div>
+			<br>
+			<div>
+				<input type="submit" name="submit" value="Search Bookings"
+					class="btn btn-success">&nbsp; <input type="reset"
+					name="reset" value=" Clear " class="btn btn-info">
+			</div>
+			<br> <a href="admin.html" class="btn btn-danger" role="button">Cancel</a>
+		</form>
+	</div>
+</body>
+
+</html>

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.sportsclub.dbutil.DBUtil;
+import com.sportsclub.domain.BookingSports;
 import com.sportsclub.domain.Mail;
 import com.sportsclub.domain.Sports;
 import com.sportsclub.domain.SportsClubs;
@@ -144,7 +145,7 @@ public class AdminDaoImpl implements AdminDao {
 	public Map<String, Integer> getBookings() {
 		Map<String, Integer> map = new HashMap<>();
 		String getBookings = "select e.scname,count(s.scid) from sportsclubs e inner join booking s on e.scid=s.scid group by s.scid";
-				//"select scid,count(scid) as bookingcount from booking group by scid";
+		// "select scid,count(scid) as bookingcount from booking group by scid";
 		try {
 			con = dbutil.getConnection();
 			st = con.createStatement();
@@ -158,6 +159,47 @@ public class AdminDaoImpl implements AdminDao {
 			e.printStackTrace();
 		}
 		return map;
+	}
+
+	@Override
+	public List<BookingSports> getUserBookingByClubWise() {
+		List<BookingSports> bookingList = new ArrayList<>();
+		String view = "SELECT * FROM BOOKING ORDER BY SCID";
+		try {
+			con = dbutil.getConnection();
+			st = con.createStatement();
+			rs = st.executeQuery(view);
+			while (rs.next()) {
+				BookingSports bs = BookingSports.builder().bookingid(rs.getString(1)).sid(rs.getString(2))
+						.userid(rs.getString(3)).bookingdate(rs.getString(4)).bookingtime(rs.getString(5))
+						.bookingprice(rs.getInt(6)).scid(rs.getInt(7)).build();
+				bookingList.add(bs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return bookingList;
+	}
+
+	@Override
+	public List<BookingSports> searchBookings(String bid) {
+		List<BookingSports> bookingList = new ArrayList<>();
+		String view = "SELECT * FROM BOOKING WHERE BID=?";
+		try {
+			con = dbutil.getConnection();
+			pst = con.prepareStatement(view);
+			pst.setString(1, bid);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				BookingSports bs = BookingSports.builder().bookingid(rs.getString(1)).sid(rs.getString(2))
+						.userid(rs.getString(3)).bookingdate(rs.getString(4)).bookingtime(rs.getString(5))
+						.bookingprice(rs.getInt(6)).scid(rs.getInt(7)).build();
+				bookingList.add(bs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return bookingList;
 	}
 
 }

@@ -31,15 +31,7 @@ body {
 </head>
 
 <body>
-<%
-		response.setHeader("Cache-Control", "no-cache , no-store , must-revalidate");
-		response.setHeader("Progma", "no-cache");
-		response.setHeader("Expries", "0");
 
-		if (session.getAttribute("uid") == null) {
-			response.sendRedirect("timeout.jsp");
-		}
-	%>
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -63,6 +55,7 @@ body {
 	
 	<table id="sports" align="center">
 			<tr>
+			<th>CLUB ID</th>
 				<th>SID</th>
 				<th>USER ID</th>
 				<th>BOOKING ID</th>
@@ -72,6 +65,7 @@ body {
 			</tr>
 			<c:forEach items="${booking}" var="allSport">
 				<tr>
+				<td>${allSport.scid}</td>
 					<td>${allSport.sid}</td>
 					<td>${allSport.userid}</td>
 					<td>${allSport.bookingid}</td>

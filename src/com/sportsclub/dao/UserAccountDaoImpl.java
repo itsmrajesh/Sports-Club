@@ -50,7 +50,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
 			pstmt.setString(6, p.getAddress());
 			pstmt.setString(7, p.getPassword());
 			int i = pstmt.executeUpdate();
-			if (i > 0) {
+			if (i == 1) {
 				System.out.println("Data inserted.... for " + p.getName());
 				return true;
 			}
@@ -176,19 +176,16 @@ public class UserAccountDaoImpl implements UserAccountDao {
 				String userId = rs.getString("uid");
 				String name = rs.getString("name");
 				String email = rs.getString("email");
-				String dob=rs.getString("dob");
+				String dob = rs.getString("dob");
 				long mobile = rs.getLong("mobile");
 				String address = rs.getString("address");
-				profile = Profile.builder().userid(userId).name(name).email(email).address(address).mobile(mobile).dob(dob)
-						.build();
+				profile = Profile.builder().userid(userId).name(name).email(email).address(address).mobile(mobile)
+						.dob(dob).build();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return profile;
 	}
-
-	
-
 
 }

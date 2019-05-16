@@ -70,7 +70,7 @@ public class BookingDaoImpl extends AdminDaoImpl implements BookingDao {
 			while (rs.next()) {
 				BookingSports bs = BookingSports.builder().bookingid(rs.getString(1)).sid(rs.getString(2))
 						.userid(rs.getString(3)).bookingdate(rs.getString(4)).bookingtime(rs.getString(5))
-						.bookingprice(rs.getInt(6)).build();
+						.bookingprice(rs.getInt(6)).scid(rs.getInt(7)).build();
 				bookingList.add(bs);
 			}
 		} catch (SQLException e) {

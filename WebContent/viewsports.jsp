@@ -32,22 +32,14 @@ body {
 
 
 <body>
-	<%
-		response.setHeader("Cache-Control", "no-cache , no-store , must-revalidate");
-		response.setHeader("Progma", "no-cache");
-		response.setHeader("Expries", "0");
-
-		if (session.getAttribute("uid") == null) {
-			response.sendRedirect("timeout.jsp");
-		}
-	%>
+	
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">Sports Club System</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li><a href="#">Home</a></li>
+				<li><a href="admin.html">Home</a></li>
 				<li class="active"><a href="admin.html">Back</a></li>
 
 			</ul>
@@ -62,21 +54,21 @@ body {
 	<h1>Viewing All Sports</h1>
 	<table id="sports" align="center">
 		<tr>
+			<th>Sports Club</th>
 			<th>SID</th>
 			<th>SportsName</th>
-			<th>Sports Club</th>
-			<th>Fees</th>
 			<th>No.of.Players</th>
 			<th>Sport Type</th>
+			<th>Fees</th>
 		</tr>
 		<c:forEach items="${allSports}" var="allSport">
 			<tr>
+				<td>${allSport.sclub}</td>
 				<td>${allSport.sid}</td>
 				<td>${allSport.sname}</td>
-				<td>${allSport.sclub}</td>
-				<td>${allSport.sprice}</td>
 				<td>${allSport.players}</td>
 				<td>${allSport.stype}</td>
+				<td>${allSport.sprice}</td>
 
 			</tr>
 		</c:forEach>

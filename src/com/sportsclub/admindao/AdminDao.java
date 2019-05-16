@@ -3,6 +3,7 @@ package com.sportsclub.admindao;
 import java.util.List;
 import java.util.Map;
 
+import com.sportsclub.domain.BookingSports;
 import com.sportsclub.domain.Mail;
 import com.sportsclub.domain.Sports;
 import com.sportsclub.domain.SportsClubs;
@@ -21,4 +22,8 @@ public interface AdminDao {
 	Mail getMailAuthentication();
 
 	Map<String, Integer> getBookings();
+	
+	List<BookingSports> getUserBookingByClubWise();
+	
+	List<BookingSports> searchBookings(String bid);
 }
