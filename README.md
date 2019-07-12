@@ -33,8 +33,8 @@ In Dashboard all the sports will be available for booking
 
 # Credits:
 	M RAJESH (Team Lead and Back End Developer) @itsmrajesh
-  M V MANJUNATH (Front End Developer)
-LICENSE:
+        M V MANJUNATH (Front End Developer)
+### LICENSE:
 This project include various third party libraries 
 
 ## CONTACT:
