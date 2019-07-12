@@ -5,8 +5,7 @@ Sports Club Management System is an web application which helps users to book an
 USAGE:
 For first time use on local computer they need to add the some sports clubs and respective sports available their.
 Admin need to insert the Gmail username and password in database for email working as these project supports email notifications for users
-After installation of MySQL execute all the commands in this link : [ SQL Query ]
-(https://github.com/itsmrajesh/Sports-Club/blob/master/dbquery.txt).
+After installation of MySQL execute all the commands in this link : [SQL Query](https://github.com/itsmrajesh/Sports-Club/blob/master/dbquery.txt).
 
 ## INSTALLATION:
 Clone the project from this link : [Clone] (https://github.com/itsmrajesh/Sports-Club)
