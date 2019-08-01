@@ -31,11 +31,11 @@ After successful sign up user need to provide same details for login page then a
 In Dashboard all the sports will be available for booking
 
 # Credits:
-	M RAJESH (Team Lead and Back End Developer) @itsmrajesh
+	M RAJESH (Team Lead and Back End Developer)
 	M V MANJUNATH (Front End Developer)
 ### LICENSE:
 This project include various third party libraries 
 
-## CONTACT:
-Email: m.rajesh242@gmail.com
-M Rajesh [LinkedIn](https://www.linkedin.com/in/itsmrajesh/)
+	
+### Contact me [GitHub](https://github.com/itsmrajesh)  [LinkedIn](https://linkedin.com/in/itsmrajesh/) [Twitter](https://github.com/itsmrajesh) 
+Email : m.rajesh242@gmail.com
