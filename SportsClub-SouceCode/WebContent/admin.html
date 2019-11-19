@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width-device-width, initial-scale-1">    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+<title>Admin</title>
+<style>
+    * {
+        box-sizing: border-box;
+      }
+      
+      
+      .column {
+        float: left;
+        width: 25%;
+        padding: 10px;
+      }
+      
+      
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      
+      
+      @media screen and (max-width: 900px) {
+        .column  {
+          width: 50%;
+        }
+      }
+      
+      
+      @media screen and (max-width: 600px) {
+        .column  {
+          width: 100%;
+        }
+      }
+      
+      .grid-container {
+        display: grid;
+        grid-template: 150px / auto auto auto;
+        grid-gap: 10px;
+       
+        padding: 25px;
+      }
+      
+      .grid-container > div {
+        background-color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        padding: 20px 0;
+        font-size: 20px;}
+      
+        .SUBMITbtn {
+                background-color: #0BC915;
+                color: #0A0202;
+                padding: 1px 1px;
+                margin: 1px 0;
+                border-radius: 7px;
+                cursor: pointer;
+                width: 30%;
+                opacity: 0.9;
+            }
+            
+            .SUBMITbtn:hover {
+                opacity: 1;
+            }
+            .SUBMITbtn1 {
+                background-color: #09DA33;
+                color: #0A0202;
+                padding: 1px 1px;
+                margin: 5px 0;
+                border-radius: 7px;
+                cursor: pointer;
+                width: 30%;
+                opacity: 0.9;
+            }
+            
+            .SUBMITbtn1:hover {
+                opacity: 1;
+            }
+            .SUBMITbtn2 {
+                background-color: #05C205;
+                color: #0A0202;
+                padding: 1px 1px;
+                margin: 5px 0;
+                border-radius: 7px;
+                cursor: pointer;
+                width: 35%;
+                opacity: 0.9;
+            }
+            
+            .SUBMITbtn2:hover {
+                opacity: 1;
+            }
+            .SUBMITbtn3 {
+                background-color: #0CB906;
+                color: #0A0202;
+                padding: 1px 1px;
+                margin: 5px 0;
+                border-radius: 7px;
+                cursor: pointer;
+                width: 40%;
+                opacity: 0.9;
+            }
+            
+            .SUBMITbtn3:hover {
+                opacity: 1;
+            }
+            .SUBMITbtn4 {
+                background-color: #0CB906;
+                color: #0A0202;
+                padding: 1px 1px;
+                margin: 5px 0;
+                border-radius: 7px;
+                cursor: pointer;
+                width: 40%;
+                opacity: 0.9;
+            }
+            
+            .SUBMITbtn4:hover {
+                opacity: 1;
+            }
+            .SUBMITbtn5 {
+                background-color: #0CB906;
+                color: #0A0202;
+                padding: 1px 1px;
+                margin: 5px 0;
+                border-radius: 7px;
+                cursor: pointer;
+                width: 40%;
+                opacity: 0.9;
+            }
+            
+            .SUBMITbtn5:hover {
+                opacity: 1;
+            }
+          
+           .container{overflow: hidden}
+           .tab{float: left;}
+     </style>
+
+<body background="main.jpg">
+        <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <li class="active"><a class="navbar-brand" href="#">Sports Club System</a></li>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="admin.html">Home</a></li>
+                        <li><a href="admin.html">
+          <span class="glyphicon glyphicon-refresh"></span>
+        </a></li>
+                    </ul>
+    
+                   
+                        
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="logout">Logout	&nbsp;<span class="glyphicon glyphicon-off"></span></a></li>
+                    </ul>
+                </div>
+            </nav><br>
+
+        
+     
+      
+
+            <center><h2><font Color="white" size="8px" face="arial">Welcome Admin</font></h2></center>
+            <br>
+
+            <center><font Color="white" size="8px" face="arial"><h3>NAME : ADMIN </h3>
+            <h3>ID : 101</h3></center></font>
+        
+    
+    
+          
+            <div class="grid-container">
+                <div class="item1"><a href="sportsclubs"><img  src="add.jpg"  width="70" height="81"></div></a>
+                <div class="item2"><a href="viewsports"><img  src="view.jpg"  width="70" height="81"></div></a>
+                <div class="item3"><a href="searchsports.html"><img  src="search.jpg"  width="70" height="81"></div></a>
+                <div class="item4"> <a href="sportsclubs"><button onclick="addHtmlTableRow();" class="SUBMITbtn">AddSports</button></a></div>
+                <div class="item5"> <a href="viewsports"><button onclick="addHtmlTableRow();" class="SUBMITbtn1">ViewSports</button></a></div>
+                <div class="item6"> <a href="searchsports.html"> <button onclick="addHtmlTableRow();" class="SUBMITbtn2">SearchSports</button></a></div>
+               
+              </div>
+              <div class="grid-container">
+                  <div class="item1"><a href="showbookinggraph"><img  src="update.jpg"  width="70" height="81"></div></a>
+                  <div class="item2"><a href="viewbookingclubwise"><img  src="view.jpg"  width="70" height="81"></div></a>
+                  <div class="item3"><a href="searchbookings.html"><img  src="search.jpg"  width="70" height="81"></div></a>  
+                  <div class="item4"> <a href="showbookinggraph"><button onclick="addHtmlTableRow();" class="SUBMITbtn3">Bookings Graph</button></a></div>
+                  <div class="item5"><a href="viewbookingclubwise"> <button onclick="addHtmlTableRow();" class="SUBMITbtn4">View Bookings by Club</button></a></div>
+                  <div class="item6"> <a href="searchbookings.html"><button onclick="addHtmlTableRow();" class="SUBMITbtn5">Search Bookings</button></a></div>
+  </div>
+  
+
+
+</body>
+
+
+</html>

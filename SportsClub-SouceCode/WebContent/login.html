@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link rel="stylesheet" type="text/css" href="css/demo.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+<style>
+
+body  {
+  background-image: url("images/loginbg.png");
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
+
+<script type="text/javascript">
+	function show() {
+		var user = document.f1.username.value;
+		var password = document.f1.psw.value;
+		if (user == "Admin" && password == "1234") {
+			confirm("LOG");
+
+		} else {
+			prompt("is it right");
+
+		}
+		alert("Thankyou");
+
+	}
+</script>
+
+<title>Login || Sign Up</title>
+
+
+</head>
+
+<body>
+	<div class="container">
+
+		<div class="codrops-top">
+			<a href=""> </a>
+
+			<div class="clr"></div>
+		</div>
+		<header>
+
+			<h1>
+				Login OR Sign Up <span></span>
+			</h1>
+			<br>
+			<h1>
+				<a href="home.html">->Go HOME</a><span></span>
+			</h1>
+			<nav class="codrops-demos"></nav>
+		</header>
+		<section>
+			<div id="container_demo">
+
+				<a class="hiddenanchor" id="toregister"></a> <a class="hiddenanchor"
+					id="tologin"></a>
+				<div id="wrapper">
+					<div id="login" class="animate form">
+						<form action="login" method="post" autocomplete="off">
+							<h1>Log in</h1>
+							<p>
+								<label for="email" class="uname" data-icon="u">UserName
+								</label> <input id="username" name="email" required="required"
+									type="text" placeholder="Enter Email" />
+							</p>
+							<p>
+								<label for="password" class="youpasswd" data-icon="p">Password
+								</label> <input id="password" name="password" required="required"
+									type="password" placeholder="Enter Password" />
+							</p>
+							<p class="keeplogin">
+								<input type="checkbox" name="loginkeeping" id="loginkeeping"
+									value="" /> <label for="loginkeeping">Keep me logged
+									in</label>
+							</p>
+							<p class="login button">
+								<input type="submit" value="Login" />
+							</p>
+							<p class="change_link">
+								Not a member yet ? <a href="#toregister" class="to_register">Join
+									us</a>
+							</p>
+						</form>
+					</div>
+					<!-- Signup section -->
+					<div id="register" class="animate form">
+						<form action="signup" method="post" autocomplete="off">
+							<h1>Sign up</h1>
+							<p>
+								<label for="name" class="name" data-icon="u">Name</label> <input
+									id="username" name="name" required="required" type="text"
+									placeholder="Enter Name" />
+							</p>
+
+							<p>
+								<label for="emailsignup" class="youmail" data-icon="e">E-mail</label>
+								<input id="eid" name="email" required="required" type="email"
+									placeholder="Enter e-mail ID" />
+							</p>
+
+							<p>
+								<label for="passwordsignup" class="youpasswd" data-icon="p">Password
+								</label> <input id="pasd" name="password" required="required"
+									type="password" placeholder="Enter Password" />
+							</p>
+
+							<!-- <p>
+                                <label for="usernamesignup" class="uname" data-icon="u"> UserName</label>
+                                <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="Enter UserName" />
+                            </p> -->
+							<p>
+								<label for="dob" class="dob" data-icon="&#x1f4c5">DOB</label> <input
+									id="dob" name="dob" required="required" type="date"
+									placeholder="Enter Date Of Birth" />
+							</p>
+
+							<p>
+								<label for="mobile" class="mobile" data-icon="&#x260E">MobileNumber</label>
+								<input id="mono" name="mobile" required type="text" pattern="^[0-9]{10}$" title="Enter Valid 10 Digit mobile number"
+									placeholder="Enter MobileNumber" />
+									
+							</p>
+
+							<p>
+								<label for="address" class="address" data-icon="&#x1f310">Address</label>
+								<input id="address" name="address" required="required"
+									type="text" placeholder="Enter address" />
+							</p>
+
+
+
+
+							<p class="signin button">
+								<input type="submit" value="Sign up">
+							</p>
+							<p class="change_link">
+								Already a member ? <a href="#tologin" class="to_register">
+									Go and log in </a>
+							</p>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</section>
+	</div>
+
+
+
+
+</body>
+
+</html>

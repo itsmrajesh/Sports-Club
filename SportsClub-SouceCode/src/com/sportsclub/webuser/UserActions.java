@@ -147,7 +147,7 @@ public class UserActions extends HttpServlet implements Runnable {
 			if (!newEmail.equalsIgnoreCase(email)) {
 				if (userdao.updateEmail(uid, newEmail)) {
 					useractions.setEmail(email);
-					session.setAttribute("email", 	newEmail);
+					session.setAttribute("email", newEmail);
 					String message = "<h2>Hi User,</h2><p>The Email For Sports Club Account has recently Changed from "
 							+ email + " to new Email " + newEmail + "</p>";
 					useractions.setMessage(message);

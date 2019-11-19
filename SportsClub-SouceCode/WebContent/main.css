@@ -1,0 +1,41 @@
+body{        
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+.fixed-header, .fixed-footer{
+    width: 100%;
+    position: fixed;        
+    background: #333;
+    padding: 10px 0;
+    color: #fff;
+}
+.fixed-header{
+    top: 0;
+}
+
+.mySlides {display:none;}
+
+.fixed-footer{
+    bottom: 0;
+}    
+
+nav a{
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 7px 25px;
+    display: inline-block;
+}
+.container p{
+    line-height: 200px; 
+}
+.footer {
+    padding: 10px;
+    text-align: center;
+    background: #110000;
+    margin-top: 20px;
+  }

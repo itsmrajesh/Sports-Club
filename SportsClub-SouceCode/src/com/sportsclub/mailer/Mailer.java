@@ -19,7 +19,8 @@ public class Mailer {
 			String user = mail.getHostmailaddress();
 			String subject = mailSubject;
 			String BODY = String.join(System.getProperty("line.separator"), "<h3>Sports club System</h3>",
-					" <br> " + message + " <br>", "<h3>Thank you </h3> <br> <h3>Team Sports Club </h3>");
+					" <br> " + message + " <br>", "<h3>Thank you Team Sports Club </h3>");
+			String messageText = "Hyyy boss u have a message!!!!!!!!!! ";
 			System.out.println("Sending the mail please wait --------------------");
 
 			boolean sessionDebug = false;
