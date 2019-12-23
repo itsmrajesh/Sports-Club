@@ -8,10 +8,10 @@ Admin need to insert the Gmail username and password in database for email worki
 After installation of MySQL execute all the commands in this link : [SQL Query](https://github.com/itsmrajesh/Sports-Club/blob/master/dbquery.txt).
 
 ## INSTALLATION:
-Clone the project from this link : [Clone](https://github.com/itsmrajesh/Sports-Club)
-Install Eclipse IDE for [JEE Developers](https://www.eclipse.org/downloads/packages/release/indigo/sr2/eclipse-ide-java-ee-developers)
-Install [Apache Tomcat Server](https://tomcat.apache.org/download-90.cgi)
-Install [MySQL](https://www.mysql.com/downloads/)
+- Clone the project from this link : [Clone](https://github.com/itsmrajesh/Sports-Club)
+- Install Eclipse IDE for [JEE Developers](https://www.eclipse.org/downloads/packages/release/indigo/sr2/eclipse-ide-java-ee-developers)
+- Install [Apache Tomcat Server](https://tomcat.apache.org/download-90.cgi)
+- Install [MySQL](https://www.mysql.com/downloads/)
 
 ## CONFIGURATION:
 After Successfully installation of all the above mentioned softwares , open downloaded Eclipse IDE and choose the directory which you cloned the project and configure the tomcat server after that execute all SQL query in MySQL find all SQL Commands in dbquery,txt file and insert gmail username in username column and password in password column.
@@ -33,8 +33,13 @@ In Dashboard all the sports will be available for booking
 # Credits:
 	M RAJESH (Team Lead and Back End Developer)
 	M V MANJUNATH (Front End Developer)
-### LICENSE:
-This project include various third party libraries 
+## Contributing
+Pull requests are welcome. For any changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/) 
 
 	
 ### Contact me [GitHub](https://github.com/itsmrajesh)  [LinkedIn](https://linkedin.com/in/itsmrajesh/) [Twitter](https://github.com/itsmrajesh) 
