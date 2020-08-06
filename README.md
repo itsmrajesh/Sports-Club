@@ -25,6 +25,10 @@ Click on ADD SPORTS Button > Add New Club
 Adding New Sport to Sports Club :
 Click on ADD SPORTS Button > Choose the club Click on Add New Sport Button
 
+## E-R Diagram
+
+![ER Diagram](https://github.com/itsmrajesh/Sports-Club/blob/master/E-R%20Diagram.JPG?raw=true)
+
 ### For New user :
 User need to Sign Up for using his application 
 After successful sign up user need to provide same details for login page then after authentication user can see their dashboard
