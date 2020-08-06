@@ -13,6 +13,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/table.css" />
 <link rel="stylesheet" type="text/css" href="css/clubtable.css" />
+
 <title>
 	<%
 		out.println(session.getAttribute("name").toString().toUpperCase() + " Profile");
